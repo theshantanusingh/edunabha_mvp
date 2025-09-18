@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continue Learning - Edunabha</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar dashboard-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">🎓</span>
+                <span class="brand-text">Edunabha</span>
+            </div>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                <li><a href="courses.html" class="nav-link">📚 Courses</a></li>
+                <li><a href="practice.html" class="nav-link">✍️ Practice</a></li>
+                <li><a href="continue-learning.html" class="nav-link active">▶️ Continue</a></li>
+                <li><a href="teacher.html" class="nav-link">👨‍🏫 Teacher Mode</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="user-menu">
+                    <div class="user-avatar">R</div>
+                    <span class="user-name">Rajesh</span>
+                    <div class="user-dropdown">
+                        <a href="#" onclick="showProfile()">👤 Profile</a>
+                        <a href="#" onclick="showSettings()">⚙️ Settings</a>
+                        <a href="login.html">🚪 Sign Out</a>
+                    </div>
+                </div>
+
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <section class="page-header">
+                <h1>Continue Learning</h1>
+                <p>Pick up where you left off and keep progressing in your courses</p>
+            </section>
+
+            <!-- In Progress Courses -->
+            <section class="section">
+                <h2>Your Active Courses</h2>
+                <div class="courses-grid" id="activeCourses">
+                    <!-- Active courses will be loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Recommended Next Steps -->
+            <section class="section">
+                <h2>Recommended Next Steps</h2>
+                <div class="recommendations-grid" id="recommendations">
+                    <!-- Recommendations will be loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Learning Streak -->
+            <section class="section">
+                <div class="streak-card">
+                    <div class="streak-content">
+                        <div class="streak-icon">🔥</div>
+                        <div class="streak-info">
+                            <h3 id="streakCount">7 Day Learning Streak!</h3>
+                            <p>Keep it up! You're on fire! 🔥</p>
+                        </div>
+                        <div class="streak-reward">
+                            <span class="reward-badge">+50 XP</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- AI Chat Toggle (same as dashboard) -->
+        <div class="ai-chat-container">
+            <button class="ai-chat-toggle" id="aiChatToggle">
+                <span class="ai-icon">🤖</span>
+                <span class="ai-text">Ask AI Tutor</span>
+            </button>
+
+            <!-- AI Chat Modal -->
+            <div class="ai-chat-modal" id="aiChatModal">
+                <div class="ai-chat-header">
+                    <div class="ai-tutor-info">
+                        <div class="ai-avatar">🤖</div>
+                        <div class="ai-details">
+                            <h3>AI Tutor</h3>
+                            <p>Ask me anything about your studies!</p>
+                        </div>
+                    </div>
+                    <button class="ai-close-btn" id="aiCloseBtn">&times;</button>
+                </div>
+
+                <div class="ai-chat-messages" id="aiChatMessages">
+                    <div class="ai-message">
+                        <div class="ai-avatar-small">🤖</div>
+                        <div class="ai-message-content">
+                            <p>Hello! I'm your AI Study Assistant. Ask me any doubts about Mathematics, Science, or English. I can explain concepts, solve problems, and help with homework!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-chat-input">
+                    <div class="ai-input-container">
+                        <textarea id="aiQuestionInput"
+                            placeholder="Type your doubt here... e.g., 'Explain quadratic equations' or 'What is photosynthesis?'"
+                            rows="2"></textarea>
+                        <button class="ai-send-btn" id="aiSendBtn">
+                            <span class="send-icon">📤</span>
+                        </button>
+                    </div>
+
+                    <div class="ai-quick-questions">
+                        <span class="quick-label">Quick Questions:</span>
+                        <button class="quick-question" data-question="Explain the quadratic formula">Quadratic Formula</button>
+                        <button class="quick-question" data-question="What is photosynthesis process?">Photosynthesis</button>
+                        <button class="quick-question" data-question="Difference between active and passive voice">Active vs Passive Voice</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/dashboard.js"></script>
+    <script>
+        // Continue Learning specific functionality
+        class ContinueLearning {
+            constructor() {
+                this.activeCourses = this.getActiveCourses();
+                this.init();
+            }
+
+            init() {
+                this.loadActiveCourses();
+                this.loadRecommendations();
+                this.loadStreakData();
+            }
+
+            getActiveCourses() {
+                // Get courses from localStorage or use default data
+                const savedCourses = localStorage.getItem('edunabha_active_courses');
+                if (savedCourses) {
+                    return JSON.parse(savedCourses);
+                }
+
+                // If no saved courses, check if we have progress data from main app
+                if (window.edunabhaApp && window.edunabhaApp.courseProgress) {
+                    // Could integrate with main app progress data here
+                }
+
+                // Default active courses (same as dashboard)
+                return [
+                    {
+                        id: 1,
+                        title: 'Mathematics',
+                        class: '10',
+                        progress: 65,
+                        currentTopic: 'Quadratic Equations',
+                        lessonsComplete: 8,
+                        lessonsTotal: 12,
+                        icon: '📐',
+                        color: 'math',
+                        lastAccessed: new Date().toISOString(),
+                        nextLesson: 'Completing the Square'
+                    },
+                    {
+                        id: 2,
+                        title: 'Science',
+                        class: '10',
+                        progress: 45,
+                        currentTopic: 'Light - Reflection',
+                        lessonsComplete: 5,
+                        lessonsTotal: 11,
+                        icon: '🔬',
+                        color: 'science',
+                        lastAccessed: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
+                        nextLesson: 'Refraction of Light'
+                    },
+                    {
+                        id: 3,
+                        title: 'English',
+                        class: '10',
+                        progress: 78,
+                        currentTopic: 'Active & Passive Voice',
+                        lessonsComplete: 9,
+                        lessonsTotal: 10,
+                        icon: '📝',
+                        color: 'english',
+                        lastAccessed: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
+                        nextLesson: 'Reported Speech'
+                    }
+                ];
+            }
+
+            loadActiveCourses() {
+                const container = document.getElementById('activeCourses');
+                if (!container) return;
+
+                container.innerHTML = this.activeCourses.map(course => `
+                    <div class="course-card continue-card" data-course="${course.id}">
+                        <div class="course-header">
+                            <div class="course-icon ${course.color}">${course.icon}</div>
+                            <div class="course-meta">
+                                <h3>${course.title}</h3>
+                                <span class="course-class">Class ${course.class}</span>
+                                <div class="last-accessed">Last accessed: ${this.formatDate(course.lastAccessed)}</div>
+                            </div>
+                        </div>
+
+                        <div class="course-progress-section">
+                            <div class="progress-info">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: ${course.progress}%"></div>
+                                </div>
+                                <span class="progress-text">${course.progress}% Complete</span>
+                            </div>
+                            <div class="lesson-info">
+                                <span class="current-lesson">Current: ${course.currentTopic}</span>
+                                <span class="lesson-count">${course.lessonsComplete} of ${course.lessonsTotal} lessons</span>
+                            </div>
+                        </div>
+
+                        <div class="course-actions">
+                            <button class="btn btn-primary resume-btn" data-course="${course.id}">
+                                ▶️ Resume Learning
+                            </button>
+                            <button class="btn btn-outline practice-btn" data-course="${course.id}">
+                                ✍️ Practice
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Add event listeners
+                this.initCourseButtons();
+            }
+
+            loadRecommendations() {
+                const container = document.getElementById('recommendations');
+                if (!container) return;
+
+                const recommendations = [
+                    {
+                        type: 'practice',
+                        title: 'Practice MCQs',
+                        description: 'Test your knowledge with quick quizzes',
+                        icon: '❓',
+                        action: 'practice.html'
+                    },
+                    {
+                        type: 'review',
+                        title: 'Review Weak Topics',
+                        description: 'Focus on areas that need improvement',
+                        icon: '📈',
+                        action: '#'
+                    },
+                    {
+                        type: 'challenge',
+                        title: 'Daily Challenge',
+                        description: 'Complete today\'s learning challenge',
+                        icon: '🏆',
+                        action: '#'
+                    }
+                ];
+
+                container.innerHTML = recommendations.map(rec => `
+                    <div class="recommendation-card" onclick="handleRecommendation('${rec.action}')">
+                        <div class="rec-icon">${rec.icon}</div>
+                        <div class="rec-content">
+                            <h4>${rec.title}</h4>
+                            <p>${rec.description}</p>
+                        </div>
+                        <div class="rec-arrow">→</div>
+                    </div>
+                `).join('');
+            }
+
+            loadStreakData() {
+                let streakCount = 7; // default
+
+                // Try to get from main app first
+                if (window.edunabhaApp && window.edunabhaApp.learningStreak) {
+                    streakCount = window.edunabhaApp.learningStreak;
+                } else {
+                    // Fallback to localStorage
+                    const savedStreak = localStorage.getItem('edunabha_streak');
+                    if (savedStreak) {
+                        streakCount = parseInt(savedStreak);
+                    }
+                }
+
+                const streakElement = document.getElementById('streakCount');
+                if (streakElement) {
+                    streakElement.textContent = `${streakCount} Day Learning Streak!`;
+                }
+            }
+
+            initCourseButtons() {
+                // Resume Learning buttons
+                document.querySelectorAll('.resume-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const courseId = e.target.dataset.course;
+                        const course = this.activeCourses.find(c => c.id == courseId);
+                        this.resumeCourse(course);
+                    });
+                });
+
+                // Practice buttons
+                document.querySelectorAll('.practice-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const courseId = e.target.dataset.course;
+                        const course = this.activeCourses.find(c => c.id == courseId);
+                        if (window.edunabhaApp) {
+                            window.edunabhaApp.showNotification(`Opening ${course.title} practice...`, 'info');
+                        }
+                        setTimeout(() => {
+                            window.location.href = 'practice.html';
+                        }, 1000);
+                    });
+                });
+            }
+
+            resumeCourse(course) {
+                // Update last accessed time
+                course.lastAccessed = new Date().toISOString();
+                this.saveActiveCourses();
+
+                // Show notification and navigate
+                if (window.edunabhaApp) {
+                    window.edunabhaApp.showNotification(`Resuming ${course.title} - ${course.nextLesson}...`, 'info');
+                }
+
+                // For now, navigate to courses page (can be enhanced to go to specific lesson)
+                setTimeout(() => {
+                    window.location.href = 'courses.html';
+                }, 1500);
+            }
+
+            saveActiveCourses() {
+                localStorage.setItem('edunabha_active_courses', JSON.stringify(this.activeCourses));
+            }
+
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                const now = new Date();
+                const diffTime = Math.abs(now - date);
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+                if (diffDays === 0) return 'Today';
+                if (diffDays === 1) return 'Yesterday';
+                if (diffDays < 7) return `${diffDays} days ago`;
+                return date.toLocaleDateString();
+            }
+        }
+
+        // Global functions
+        function handleRecommendation(action) {
+            if (action === 'practice.html') {
+                window.location.href = action;
+            } else {
+                if (window.edunabhaApp) {
+                    window.edunabhaApp.showNotification('Feature coming soon!', 'info');
+                }
+            }
+        }
+
+        // Initialize when DOM loads
+        document.addEventListener('DOMContentLoaded', () => {
+            window.continueLearning = new ContinueLearning();
+        });
+
+        // Additional CSS for continue learning page
+        const additionalStyles = `
+            .continue-card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-xl);
+                padding: 2rem;
+                transition: all var(--transition-normal);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .continue-card:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-lg);
+                border-color: var(--accent);
+            }
+
+            .continue-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, var(--accent), var(--success));
+            }
+
+            .course-progress-section {
+                margin: 1.5rem 0;
+            }
+
+            .progress-info {
+                margin-bottom: 1rem;
+            }
+
+            .lesson-info {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.9rem;
+                color: var(--text-secondary);
+                margin-bottom: 1rem;
+            }
+
+            .last-accessed {
+                font-size: 0.8rem;
+                color: var(--text-muted);
+                margin-top: 0.5rem;
+            }
+
+            .recommendations-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .recommendation-card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-lg);
+                padding: 1.5rem;
+                cursor: pointer;
+                transition: all var(--transition-normal);
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .recommendation-card:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-md);
+                border-color: var(--success);
+            }
+
+            .rec-icon {
+                font-size: 2rem;
+                opacity: 0.8;
+            }
+
+            .rec-content h4 {
+                font-size: 1rem;
+                font-weight: 600;
+                margin-bottom: 0.25rem;
+                color: var(--text-primary);
+            }
+
+            .rec-content p {
+                font-size: 0.9rem;
+                color: var(--text-secondary);
+                margin: 0;
+            }
+
+            .rec-arrow {
+                font-size: 1.2rem;
+                color: var(--text-muted);
+                margin-left: auto;
+            }
+
+            .streak-card {
+                background: linear-gradient(135deg, var(--warning) 0%, #F59E0B 100%);
+                border-radius: var(--radius-xl);
+                padding: 2rem;
+                color: white;
+                box-shadow: var(--shadow-lg);
+            }
+
+            .streak-content {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            .streak-icon {
+                font-size: 3rem;
+                animation: pulse 2s infinite;
+            }
+
+            .streak-info h3 {
+                font-size: 1.25rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+            }
+
+            .streak-info p {
+                font-size: 0.95rem;
+                opacity: 0.9;
+                margin: 0;
+            }
+
+            .streak-reward {
+                margin-left: auto;
+            }
+
+            .reward-badge {
+                background: rgba(255, 255, 255, 0.2);
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: var(--radius-full);
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+            }
+
+            @media (max-width: 768px) {
+                .continue-card {
+                    padding: 1.5rem;
+                }
+
+                .streak-content {
+                    flex-direction: column;
+                    text-align: center;
+                    gap: 1rem;
+                }
+
+                .streak-reward {
+                    margin-left: 0;
+                }
+
+                .recommendations-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        `;
+
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = additionalStyles;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>

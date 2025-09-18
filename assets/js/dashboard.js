@@ -120,7 +120,19 @@ class Dashboard {
             btn.addEventListener('click', (e) => {
                 const courseId = e.target.dataset.course;
                 const course = this.mockData.courses.find(c => c.id == courseId);
+                // Store current course for continue learning page
+                localStorage.setItem('current_course_id', courseId);
+
+                // Update course progress in main app if available
+                if (window.edunabhaApp && window.edunabhaApp.saveCourseProgress) {
+                    // Save that this course was accessed
+                    window.edunabhaApp.saveCourseProgress(courseId, 'accessed', 0);
+                }
+
                 window.edunabhaApp.showNotification(`Opening ${course.title} - ${course.currentTopic}...`, 'info');
+                setTimeout(() => {
+                    window.location.href = 'continue-learning.html';
+                }, 1000);
             });
         });
         

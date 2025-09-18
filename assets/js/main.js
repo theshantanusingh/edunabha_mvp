@@ -9,6 +9,7 @@ class EdunabhaApp {
         this.initNavigation();
         this.initAuth();
         this.loadUserData();
+        this.updateLearningStreak();
         console.log('✅ Edunabha App initialized successfully!');
     }
 
@@ -92,11 +93,119 @@ class EdunabhaApp {
         if (userData) {
             this.currentUser = JSON.parse(userData);
         }
+
+        // Load additional user progress data
+        this.loadUserProgress();
+        this.loadUserPreferences();
     }
 
     setCurrentUser(user) {
         this.currentUser = user;
         localStorage.setItem('edunabha_user', JSON.stringify(user));
+    }
+
+    loadUserProgress() {
+        // Load course progress data
+        const courseProgress = localStorage.getItem('edunabha_course_progress');
+        if (courseProgress) {
+            this.courseProgress = JSON.parse(courseProgress);
+        } else {
+            this.courseProgress = {};
+        }
+
+        // Load quiz scores
+        const quizScores = localStorage.getItem('edunabha_quiz_scores');
+        if (quizScores) {
+            this.quizScores = JSON.parse(quizScores);
+        } else {
+            this.quizScores = {};
+        }
+
+        // Load learning streak
+        const streak = localStorage.getItem('edunabha_streak');
+        this.learningStreak = streak ? parseInt(streak) : 0;
+    }
+
+    loadUserPreferences() {
+        // Load user preferences
+        const preferences = localStorage.getItem('edunabha_preferences');
+        if (preferences) {
+            this.preferences = JSON.parse(preferences);
+        } else {
+            this.preferences = {
+                theme: 'light',
+                language: 'en',
+                notifications: true,
+                autoSave: true
+            };
+        }
+    }
+
+    saveCourseProgress(courseId, lessonId, progress) {
+        if (!this.courseProgress[courseId]) {
+            this.courseProgress[courseId] = {};
+        }
+        this.courseProgress[courseId][lessonId] = {
+            progress: progress,
+            lastAccessed: new Date().toISOString(),
+            completed: progress >= 100
+        };
+        localStorage.setItem('edunabha_course_progress', JSON.stringify(this.courseProgress));
+    }
+
+    getCourseProgress(courseId, lessonId = null) {
+        if (lessonId) {
+            return this.courseProgress[courseId]?.[lessonId] || { progress: 0, completed: false };
+        }
+        return this.courseProgress[courseId] || {};
+    }
+
+    saveQuizScore(quizId, score, totalQuestions) {
+        this.quizScores[quizId] = {
+            score: score,
+            totalQuestions: totalQuestions,
+            percentage: Math.round((score / totalQuestions) * 100),
+            date: new Date().toISOString()
+        };
+        localStorage.setItem('edunabha_quiz_scores', JSON.stringify(this.quizScores));
+    }
+
+    getQuizScore(quizId) {
+        return this.quizScores[quizId] || null;
+    }
+
+    updateLearningStreak() {
+        const today = new Date().toDateString();
+        const lastAccess = localStorage.getItem('edunabha_last_access');
+
+        if (lastAccess !== today) {
+            if (lastAccess) {
+                const lastDate = new Date(lastAccess);
+                const todayDate = new Date(today);
+                const diffTime = Math.abs(todayDate - lastDate);
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+                if (diffDays === 1) {
+                    this.learningStreak++;
+                } else if (diffDays > 1) {
+                    this.learningStreak = 1;
+                }
+            } else {
+                this.learningStreak = 1;
+            }
+
+            localStorage.setItem('edunabha_streak', this.learningStreak.toString());
+            localStorage.setItem('edunabha_last_access', today);
+        }
+    }
+
+    saveUserPreferences(preferences) {
+        this.preferences = { ...this.preferences, ...preferences };
+        localStorage.setItem('edunabha_preferences', JSON.stringify(this.preferences));
+    }
+
+    getUserPreferences() {
+        return this.preferences;
     }
 
     showNotification(message, type = 'info') {

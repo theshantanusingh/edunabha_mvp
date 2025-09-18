@@ -90,6 +90,19 @@ body {
     transition: all var(--transition-normal);
 }
 
+/* Teacher Badge Styling */
+.teacher-badge {
+    background: var(--success);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 0.75rem;
+    position: relative;
+    z-index: 1;
+}
+
 .navbar.scrolled {
     background: rgba(255, 255, 255, 0.98);
     box-shadow: var(--shadow-lg);
@@ -113,6 +126,8 @@ body {
     font-size: 1.5rem;
     color: var(--primary);
     text-decoration: none;
+    flex-shrink: 0;
+    position: relative;
 }
 
 .brand-icon {
@@ -127,7 +142,7 @@ body {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
 }
 
@@ -1099,9 +1114,10 @@ body:not(.auth-page) {
     .nav-link {
         padding: 1rem 2rem;
         display: block;
-        font-size: 1.1rem;
+        font-size: 1rem;
         width: 100%;
         border-radius: 0;
+        text-align: left;
     }
 
     .hamburger {
@@ -1122,6 +1138,15 @@ body:not(.auth-page) {
 
     .user-name {
         display: none;
+    }
+
+    .nav-menu {
+        gap: 0.75rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 0.75rem 0.5rem;
     }
 
     .container {

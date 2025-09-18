@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Dashboard - Edunabha</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,10 +18,11 @@
             </a>
             
             <ul class="nav-menu" id="navMenu">
-                <li><a href="teacher.html" class="nav-link active">📊 Dashboard</a></li>
-                <li><a href="#" class="nav-link">📚 Content</a></li>
-                <li><a href="#" class="nav-link">👥 Students</a></li>
-                <li><a href="dashboard.html" class="nav-link">👨‍🎓 Student Mode</a></li>
+                <li><a href="teacher.html" class="nav-link active">📊 Dash</a></li>
+                <li><a href="courses.html" class="nav-link">📚 Courses</a></li>
+                <li><a href="practice.html" class="nav-link">✍️ Practice</a></li>
+                <li><a href="continue-learning.html" class="nav-link">▶️ Continue</a></li>
+                <li><a href="dashboard.html" class="nav-link">👨‍🎓 Student</a></li>
             </ul>
             
             <div class="nav-actions">
@@ -367,18 +368,55 @@
         </div>
     </div>
     
-    <script src="../assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
     <script>
         // Teacher-specific styles
         const teacherStyles = `
             .teacher-badge {
                 background: var(--success);
                 color: white;
-                padding: 0.25rem 0.75rem;
+                padding: 0.2rem 0.5rem;
                 border-radius: var(--radius-full);
-                font-size: 0.8rem;
+                font-size: 0.7rem;
                 font-weight: 600;
-                margin-left: 0.75rem;
+                margin-left: 0.5rem;
+                position: relative;
+                z-index: 1;
+                letter-spacing: 0.02em;
+            }
+
+            /* Ensure navbar alignment for teacher page */
+            .navbar .nav-container {
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .navbar .nav-brand {
+                flex-shrink: 0;
+                min-width: 0;
+            }
+
+            .navbar .nav-menu {
+                flex: 1;
+                justify-content: center;
+                margin: 0 0.5rem;
+                min-width: 0;
+            }
+
+            .navbar .nav-actions {
+                flex-shrink: 0;
+                min-width: 0;
+            }
+
+            /* Override main CSS for teacher page */
+            .nav-menu {
+                gap: 0.75rem !important;
+            }
+
+            .nav-link {
+                font-size: 0.9rem !important;
+                padding: 0.75rem 0.5rem !important;
+                white-space: nowrap;
             }
             
             .teacher-welcome {
