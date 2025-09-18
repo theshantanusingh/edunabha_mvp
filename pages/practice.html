@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice MCQs - Edunabha</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar dashboard-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">🎓</span>
+                <span class="brand-text">Edunabha</span>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                <li><a href="courses.html" class="nav-link">📚 Courses</a></li>
+                <li><a href="practice.html" class="nav-link active">✍️ Practice</a></li>
+                <li><a href="teacher.html" class="nav-link">👨‍🏫 Teacher Mode</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="user-menu">
+                    <div class="user-avatar">R</div>
+                    <span class="user-name">Rajesh</span>
+                </div>
+                
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Quiz Selection -->
+    <main class="main-content">
+        <div class="container">
+            <div id="quizSelection" class="quiz-selection">
+                <section class="page-header">
+                    <h1>Practice MCQs</h1>
+                    <p>Test your knowledge with multiple choice questions</p>
+                </section>
+
+                <div class="quiz-categories" id="quizCategories">
+                    <!-- Quiz categories will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Quiz Interface -->
+            <div id="quizInterface" class="quiz-interface" style="display: none;">
+                <div class="quiz-header">
+                    <div class="quiz-info">
+                        <h2 id="quizTitle">Quiz Title</h2>
+                        <p id="quizDescription">Subject • Class</p>
+                    </div>
+                    
+                    <div class="quiz-progress">
+                        <span id="questionProgress">1/10</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressBar"></div>
+                        </div>
+                        <div class="timer" id="timer">10:00</div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">Question <span id="questionNumber">1</span></div>
+                    <h3 class="question-text" id="questionText">Question will appear here</h3>
+                    
+                    <div class="options" id="optionsContainer">
+                        <!-- Options will be loaded dynamically -->
+                    </div>
+                    
+                    <div class="question-actions">
+                        <button class="btn btn-outline" id="prevBtn" onclick="previousQuestion()">Previous</button>
+                        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Results -->
+            <div id="quizResults" class="quiz-results" style="display: none;">
+                <div class="results-card">
+                    <div class="results-header">
+                        <div class="score-circle">
+                            <div class="score-number" id="scorePercentage">80%</div>
+                            <div class="score-label">Score</div>
+                        </div>
+                        <div class="results-info">
+                            <h2>Quiz Completed!</h2>
+                            <p id="resultsMessage">Great job! You scored well.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="results-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="correctAnswers">8</div>
+                            <div class="stat-label">Correct</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="incorrectAnswers">2</div>
+                            <div class="stat-label">Incorrect</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="timeTaken">8:30</div>
+                            <div class="stat-label">Time</div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button class="btn btn-outline" onclick="retakeQuiz()">Retake Quiz</button>
+                        <button class="btn btn-primary" onclick="backToSelection()">Try Another</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edunabha - Transform Rural Education</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">🎓</span>
+                <span class="brand-text">Edunabha</span>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#courses" class="nav-link">Courses</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline">Sign In</a>
+                <a href="login.html" class="btn btn-primary">Get Started</a>
+                
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Learn Without <span class="highlight">Limits</span>
+                        <br>Even Offline
+                    </h1>
+                    <p class="hero-description">
+                        Revolutionary digital learning platform designed for rural Punjab students. 
+                        Access world-class education in your language, at your pace, anywhere.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10,000+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Teachers</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-actions">
+                        <a href="login.html" class="btn btn-primary btn-large">Start Learning Free</a>
+                        <button class="btn btn-outline btn-large" onclick="playDemo()">Watch Demo</button>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="phone-mockup">
+                        <div class="screen">
+                            <div class="app-header">
+                                <span>Edunabha</span>
+                                <div class="user-avatar">👨‍🎓</div>
+                            </div>
+                            <div class="welcome-section">
+                                <h3>Good Morning, Rajesh!</h3>
+                                <p>Ready to continue learning?</p>
+                            </div>
+                            <div class="progress-card">
+                                <span>Today's Progress: 75%</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="subjects">
+                                <div class="subject-item">
+                                    <span class="subject-icon">📐</span>
+                                    <span>Mathematics: 8/12</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span class="subject-icon">🔬</span>
+                                    <span>Science: 6/10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Students Love Edunabha</h2>
+                <p>Built specifically for rural students with real challenges in mind</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <h3>Works Completely Offline</h3>
+                    <p>Download lessons once and learn anytime, anywhere. Perfect for areas with unstable internet.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🗣️</div>
+                    <h3>Learn in Your Native Language</h3>
+                    <p>Full support for Punjabi, Hindi, and English. Switch languages anytime.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Smart Tutoring</h3>
+                    <p>Intelligent tutoring system adapts to your learning pace and provides personalized help.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Gamified Learning</h3>
+                    <p>Earn points, unlock achievements, and compete with friends. Make learning fun!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <div class="container">
+            <div class="section-header">
+                <h2>Master Every Subject</h2>
+                <p>Complete curriculum aligned with Punjab Education Board</p>
+            </div>
+            
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-icon math">📐</div>
+                    <h3>Mathematics</h3>
+                    <p>Master algebra, geometry, trigonometry with step-by-step solutions.</p>
+                    <div class="course-stats">
+                        <span>150+ Lessons</span>
+                        <span>60 Hours</span>
+                    </div>
+                    <a href="courses.html" class="btn btn-primary">Start Learning</a>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon science">🔬</div>
+                    <h3>Science</h3>
+                    <p>Explore Physics, Chemistry, Biology with virtual labs and experiments.</p>
+                    <div class="course-stats">
+                        <span>120+ Lessons</span>
+                        <span>50 Hours</span>
+                    </div>
+                    <a href="./courses.html" class="btn btn-primary">Start Learning</a>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon english">📝</div>
+                    <h3>English</h3>
+                    <p>Improve reading, writing, speaking with interactive stories and grammar.</p>
+                    <div class="course-stats">
+                        <span>100+ Lessons</span>
+                        <span>40 Hours</span>
+                    </div>
+                    <a href="courses.html" class="btn btn-primary">Start Learning</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Join 10,000+ Students Learning with Edunabha</h2>
+                <p>Start your learning journey today. It's completely free and works offline!</p>
+                <a href="login.html" class="btn btn-primary btn-large">Get Started Free</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

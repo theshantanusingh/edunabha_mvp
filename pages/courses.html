@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Edunabha</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon">🎓</span>
+                <span class="brand-text">Edunabha</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                <li><a href="courses.html" class="nav-link active">📚 Courses</a></li>
+                <li><a href="practice.html" class="nav-link">✍️ Practice</a></li>
+                <li><a href="teacher.html" class="nav-link">👨‍🏫 Teacher Mode</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="user-menu">
+                    <div class="user-avatar">R</div>
+                    <span class="user-name">Rajesh</span>
+                    <div class="user-dropdown">
+                        <a href="#" onclick="showProfile()">👤 Profile</a>
+                        <a href="#" onclick="showSettings()">⚙️ Settings</a>
+                        <a href="login.html">🚪 Sign Out</a>
+                    </div>
+                </div>
+                
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <section class="page-header">
+                <h1>Available Courses</h1>
+                <p>Choose your subjects and start learning at your own pace</p>
+            </section>
+
+            <!-- Filters -->
+            <section class="section">
+                <div class="filters-section">
+                    <div class="filters">
+                        <select id="classFilter" class="filter-select">
+                            <option value="">All Classes</option>
+                            <option value="9">Class 9</option>
+                            <option value="10" selected>Class 10</option>
+                            <option value="11">Class 11</option>
+                            <option value="12">Class 12</option>
+                        </select>
+                        
+                        <select id="subjectFilter" class="filter-select">
+                            <option value="">All Subjects</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="science">Science</option>
+                            <option value="english">English</option>
+                            <option value="hindi">Hindi</option>
+                        </select>
+                        
+                        <button class="btn btn-outline" onclick="clearFilters()">Clear Filters</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Courses Grid -->
+            <section class="section">
+                <div class="courses-grid" id="coursesGrid">
+                    <!-- Mathematics -->
+                    <div class="course-card detailed" data-class="10" data-subject="mathematics">
+                        <div class="course-icon math">📐</div>
+                        <div class="course-meta">
+                            <h3>Mathematics</h3>
+                            <span class="course-class">Class 10</span>
+                            <div class="course-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">(4.9)</span>
+                            </div>
+                        </div>
+                        
+                        <p class="course-description">
+                            Complete CBSE Class 10 Mathematics course covering all chapters with detailed explanations, practice questions, and real-world applications.
+                        </p>
+                        
+                        <div class="course-stats">
+                            <span>📚 20 Lessons</span>
+                            <span>⏱️ 40 Hours</span>
+                            <span>❓ 200+ MCQs</span>
+                        </div>
+                        
+                        <div class="course-topics">
+                            <h4>Topics Covered:</h4>
+                            <div class="topics-list">
+                                <span class="topic-tag">Real Numbers</span>
+                                <span class="topic-tag">Polynomials</span>
+                                <span class="topic-tag">Linear Equations</span>
+                                <span class="topic-tag">Quadratic Equations</span>
+                                <span class="topic-tag">Arithmetic Progressions</span>
+                                <span class="topic-tag">Triangles</span>
+                                <span class="topic-tag">Coordinate Geometry</span>
+                                <span class="topic-tag">Trigonometry</span>
+                            </div>
+                        </div>
+                        
+                        <div class="course-actions">
+                            <button class="btn btn-primary" onclick="startCourse('mathematics', 10)">
+                                Start Course
+                            </button>
+                            <button class="btn btn-outline" onclick="previewCourse('mathematics', 10)">
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Science -->
+                    <div class="course-card detailed" data-class="10" data-subject="science">
+                        <div class="course-icon science">🔬</div>
+                        <div class="course-meta">
+                            <h3>Science</h3>
+                            <span class="course-class">Class 10</span>
+                            <div class="course-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">(4.8)</span>
+                            </div>
+                        </div>
+                        
+                        <p class="course-description">
+                            Comprehensive CBSE Class 10 Science course covering Physics, Chemistry, and Biology with practical experiments and interactive content.
+                        </p>
+                        
+                        <div class="course-stats">
+                            <span>📚 18 Lessons</span>
+                            <span>⏱️ 35 Hours</span>
+                            <span>❓ 180+ MCQs</span>
+                        </div>
+                        
+                        <div class="course-topics">
+                            <h4>Topics Covered:</h4>
+                            <div class="topics-list">
+                                <span class="topic-tag">Light</span>
+                                <span class="topic-tag">Electricity</span>
+                                <span class="topic-tag">Magnetic Effects</span>
+                                <span class="topic-tag">Acids & Bases</span>
+                                <span class="topic-tag">Metals & Non-metals</span>
+                                <span class="topic-tag">Life Processes</span>
+                                <span class="topic-tag">Heredity</span>
+                                <span class="topic-tag">Environment</span>
+                            </div>
+                        </div>
+                        
+                        <div class="course-actions">
+                            <button class="btn btn-primary" onclick="startCourse('science', 10)">
+                                Start Course
+                            </button>
+                            <button class="btn btn-outline" onclick="previewCourse('science', 10)">
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- English -->
+                    <div class="course-card detailed" data-class="10" data-subject="english">
+                        <div class="course-icon english">📝</div>
+                        <div class="course-meta">
+                            <h3>English</h3>
+                            <span class="course-class">Class 10</span>
+                            <div class="course-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">(4.7)</span>
+                            </div>
+                        </div>
+                        
+                        <p class="course-description">
+                            Complete CBSE Class 10 English course focusing on literature, grammar, writing skills, and communication development.
+                        </p>
+                        
+                        <div class="course-stats">
+                            <span>📚 16 Lessons</span>
+                            <span>⏱️ 30 Hours</span>
+                            <span>❓ 150+ MCQs</span>
+                        </div>
+                        
+                        <div class="course-topics">
+                            <h4>Topics Covered:</h4>
+                            <div class="topics-list">
+                                <span class="topic-tag">Grammar</span>
+                                <span class="topic-tag">Vocabulary</span>
+                                <span class="topic-tag">Reading Comprehension</span>
+                                <span class="topic-tag">Letter Writing</span>
+                                <span class="topic-tag">Essay Writing</span>
+                                <span class="topic-tag">Poetry</span>
+                                <span class="topic-tag">Prose</span>
+                                <span class="topic-tag">Drama</span>
+                            </div>
+                        </div>
+                        
+                        <div class="course-actions">
+                            <button class="btn btn-primary" onclick="startCourse('english', 10)">
+                                Start Course
+                            </button>
+                            <button class="btn btn-outline" onclick="previewCourse('english', 10)">
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <script src="/assets/js/main.js"></script>
+    <script>
+        // Additional CSS for enhanced course cards
+        const additionalStyles = `
+            .course-card.detailed {
+                padding: 2.5rem;
+                text-align: left;
+            }
+            
+            .course-meta {
+                margin-bottom: 1.5rem;
+            }
+            
+            .course-meta h3 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .course-class {
+                display: inline-block;
+                background: rgba(99, 102, 241, 0.1);
+                color: var(--accent);
+                padding: 0.25rem 0.75rem;
+                border-radius: var(--radius-full);
+                font-size: 0.8rem;
+                font-weight: 600;
+                margin-bottom: 0.75rem;
+            }
+            
+            .course-rating {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .stars {
+                color: #F59E0B;
+                font-size: 0.9rem;
+            }
+            
+            .rating-text {
+                color: var(--text-muted);
+                font-size: 0.9rem;
+            }
+            
+            .course-description {
+                color: var(--text-secondary);
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+            }
+            
+            .course-stats {
+                display: flex;
+                gap: 1.5rem;
+                margin-bottom: 1.5rem;
+                font-size: 0.9rem;
+                color: var(--text-muted);
+                flex-wrap: wrap;
+            }
+            
+            .course-topics {
+                margin-bottom: 2rem;
+            }
+            
+            .course-topics h4 {
+                font-size: 1rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+            }
+            
+            .topics-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .topic-tag {
+                background: var(--surface-secondary);
+                color: var(--text-secondary);
+                padding: 0.375rem 0.75rem;
+                border-radius: var(--radius-full);
+                font-size: 0.8rem;
+                font-weight: 500;
+                border: 1px solid var(--border);
+            }
+            
+            .course-actions {
+                display: flex;
+                gap: 1rem;
+                margin-top: auto;
+            }
+            
+            .filters-section {
+                margin-bottom: 2rem;
+            }
+            
+            .filters {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                flex-wrap: wrap;
+                padding: 1.5rem;
+                background: var(--surface);
+                border-radius: var(--radius-xl);
+                border: 1px solid var(--border);
+            }
+            
+            .filter-select {
+                padding: 0.75rem 1rem;
+                border: 1px solid var(--border);
+                border-radius: var(--radius-lg);
+                background: var(--surface);
+                color: var(--text-primary);
+                font-weight: 500;
+                cursor: pointer;
+                min-width: 150px;
+            }
+            
+            .filter-select:focus {
+                outline: none;
+                border-color: var(--accent);
+                box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            }
+        `;
+        
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = additionalStyles;
+        document.head.appendChild(styleSheet);
+        
+        // Course filtering functionality
+        function clearFilters() {
+            document.getElementById('classFilter').value = '';
+            document.getElementById('subjectFilter').value = '';
+            filterCourses();
+        }
+        
+        function filterCourses() {
+            const classFilter = document.getElementById('classFilter').value;
+            const subjectFilter = document.getElementById('subjectFilter').value;
+            const courseCards = document.querySelectorAll('.course-card');
+            
+            courseCards.forEach(card => {
+                const cardClass = card.dataset.class;
+                const cardSubject = card.dataset.subject;
+                
+                const classMatch = !classFilter || cardClass === classFilter;
+                const subjectMatch = !subjectFilter || cardSubject === subjectFilter;
+                
+                if (classMatch && subjectMatch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        function startCourse(subject, classNum) {
+            if (window.edunabhaApp) window.edunabhaApp.showNotification(`Starting ${subject} course for Class ${classNum}...`, 'success');
+            setTimeout(() => {
+                window.location.href = 'course-view.html';
+            }, 1500);
+        }
+
+        function previewCourse(subject, classNum) {
+            if (window.edunabhaApp) window.edunabhaApp.showNotification(`Loading ${subject} preview...`, 'info');
+        }
+        
+        // Initialize filters
+        document.getElementById('classFilter').addEventListener('change', filterCourses);
+        document.getElementById('subjectFilter').addEventListener('change', filterCourses);
+    </script>
+</body>
+</html>

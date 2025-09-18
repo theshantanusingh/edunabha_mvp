@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Edunabha</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon">🎓</span>
+                <span class="brand-text">Edunabha</span>
+                <span class="teacher-badge">Teacher</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="teacher.html" class="nav-link active">📊 Dashboard</a></li>
+                <li><a href="#" class="nav-link">📚 Content</a></li>
+                <li><a href="#" class="nav-link">👥 Students</a></li>
+                <li><a href="dashboard.html" class="nav-link">👨‍🎓 Student Mode</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="user-menu">
+                    <div class="user-avatar teacher-avatar">T</div>
+                    <span class="user-name">Teacher</span>
+                    <div class="user-dropdown">
+                        <a href="#" onclick="showProfile()">👤 Profile</a>
+                        <a href="#" onclick="showSettings()">⚙️ Settings</a>
+                        <a href="login.html">🚪 Sign Out</a>
+                    </div>
+                </div>
+                
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Teacher Welcome -->
+            <section class="welcome-section">
+                <div class="welcome-card teacher-welcome">
+                    <div class="welcome-content">
+                        <h1>Teacher Dashboard 👨‍🏫</h1>
+                        <p>Manage your classes, create content, and track student progress with ease.</p>
+                    </div>
+                    
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">156</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Classes</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">89%</div>
+                            <div class="stat-label">Avg Score</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="section">
+                <h2>Quick Actions</h2>
+                
+                <div class="teacher-actions-grid">
+                    <button class="action-card" onclick="openUploadModal()">
+                        <div class="action-icon">🎥</div>
+                        <h3>Upload Video Lesson</h3>
+                        <p>Add new video content for your students</p>
+                    </button>
+                    
+                    <button class="action-card" onclick="openMCQModal()">
+                        <div class="action-icon">❓</div>
+                        <h3>Create MCQ Quiz</h3>
+                        <p>Design practice questions and tests</p>
+                    </button>
+                    
+                    <button class="action-card" onclick="openNotesModal()">
+                        <div class="action-icon">📄</div>
+                        <h3>Upload Study Notes</h3>
+                        <p>Share PDF notes and materials</p>
+                    </button>
+                    
+                    <button class="action-card" onclick="viewAnalytics()">
+                        <div class="action-icon">📊</div>
+                        <h3>View Analytics</h3>
+                        <p>Track student performance and progress</p>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Class Management -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>Your Classes</h2>
+                    <button class="btn btn-primary" onclick="createNewClass()">
+                        + Create New Class
+                    </button>
+                </div>
+                
+                <div class="classes-grid">
+                    <div class="class-card">
+                        <div class="class-header">
+                            <div class="class-info">
+                                <h3>Class 10 - Mathematics</h3>
+                                <span class="student-count">42 students</span>
+                            </div>
+                            <div class="class-icon math">📐</div>
+                        </div>
+                        
+                        <div class="class-content">
+                            <div class="class-stats">
+                                <div class="stat-row">
+                                    <span class="stat-label">Content:</span>
+                                    <span class="stat-value">15/20 lessons</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Avg. Score:</span>
+                                    <span class="stat-value">78%</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Active:</span>
+                                    <span class="stat-value">38/42 students</span>
+                                </div>
+                            </div>
+                            
+                            <div class="class-actions">
+                                <button class="btn btn-outline" onclick="viewStudents('class10-math')">
+                                    View Students
+                                </button>
+                                <button class="btn btn-primary" onclick="manageContent('class10-math')">
+                                    Manage Content
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="class-card">
+                        <div class="class-header">
+                            <div class="class-info">
+                                <h3>Class 10 - Science</h3>
+                                <span class="student-count">38 students</span>
+                            </div>
+                            <div class="class-icon science">🔬</div>
+                        </div>
+                        
+                        <div class="class-content">
+                            <div class="class-stats">
+                                <div class="stat-row">
+                                    <span class="stat-label">Content:</span>
+                                    <span class="stat-value">12/18 lessons</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Avg. Score:</span>
+                                    <span class="stat-value">85%</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Active:</span>
+                                    <span class="stat-value">35/38 students</span>
+                                </div>
+                            </div>
+                            
+                            <div class="class-actions">
+                                <button class="btn btn-outline" onclick="viewStudents('class10-science')">
+                                    View Students
+                                </button>
+                                <button class="btn btn-primary" onclick="manageContent('class10-science')">
+                                    Manage Content
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="section">
+                <h2>Recent Activity</h2>
+                
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">🎥</div>
+                        <div class="activity-content">
+                            <h4>Video Uploaded: Quadratic Equations - Formula Method</h4>
+                            <p>Class 10 Mathematics • 3 hours ago • 42 students notified</p>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">❓</div>
+                        <div class="activity-content">
+                            <h4>Quiz Created: Light - Reflection Laws (10 questions)</h4>
+                            <p>Class 10 Science • 1 day ago • Available for practice</p>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">📊</div>
+                        <div class="activity-content">
+                            <h4>Test Results: 35 students completed Physics test</h4>
+                            <p>Average score: 82% • Class 10 Science • 2 days ago</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Upload Video Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Upload Video Lesson</h3>
+                <button class="modal-close" onclick="closeModal('uploadModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="upload-form" id="videoUploadForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Class</label>
+                            <select name="class" required>
+                                <option value="">Choose Class</option>
+                                <option value="9">Class 9</option>
+                                <option value="10">Class 10</option>
+                                <option value="11">Class 11</option>
+                                <option value="12">Class 12</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <select name="subject" required>
+                                <option value="">Choose Subject</option>
+                                <option value="mathematics">Mathematics</option>
+                                <option value="science">Science</option>
+                                <option value="english">English</option>
+                                <option value="hindi">Hindi</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Lesson Title</label>
+                        <input type="text" name="title" placeholder="e.g., Quadratic Equations - Introduction" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Upload Video</label>
+                        <div class="file-upload-area" onclick="document.getElementById('videoFile').click()">
+                            <input type="file" id="videoFile" name="video" accept="video/*" required style="display: none;">
+                            <p>📹 Click to upload video file</p>
+                            <p class="file-hint">Supported: MP4, AVI, MOV (Max: 500MB)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Description (Optional)</label>
+                        <textarea name="description" placeholder="Brief description of the lesson content" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="closeModal('uploadModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">📤 Upload Video</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MCQ Creation Modal -->
+    <div id="mcqModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create MCQ Quiz</h3>
+                <button class="modal-close" onclick="closeModal('mcqModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="mcq-form" id="mcqCreationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Class</label>
+                            <select name="class" required>
+                                <option value="">Choose Class</option>
+                                <option value="9">Class 9</option>
+                                <option value="10">Class 10</option>
+                                <option value="11">Class 11</option>
+                                <option value="12">Class 12</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <select name="subject" required>
+                                <option value="">Choose Subject</option>
+                                <option value="mathematics">Mathematics</option>
+                                <option value="science">Science</option>
+                                <option value="english">English</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Quiz Title</label>
+                        <input type="text" name="quizTitle" placeholder="e.g., Quadratic Equations - Practice Test" required>
+                    </div>
+                    
+                    <div class="mcq-builder" id="mcqBuilder">
+                        <div class="question-block">
+                            <div class="question-header">
+                                <h4>Question 1</h4>
+                                <button type="button" class="btn btn-outline btn-small" onclick="addQuestion()">+ Add Question</button>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Question</label>
+                                <textarea name="question1" placeholder="Enter your question here" required rows="2"></textarea>
+                            </div>
+                            
+                            <div class="options-grid">
+                                <div class="option-group">
+                                    <input type="radio" name="correct1" value="A" id="q1a" required>
+                                    <input type="text" name="option1A" placeholder="Option A" required>
+                                    <label for="q1a" class="correct-label">Mark as Correct</label>
+                                </div>
+                                
+                                <div class="option-group">
+                                    <input type="radio" name="correct1" value="B" id="q1b">
+                                    <input type="text" name="option1B" placeholder="Option B" required>
+                                    <label for="q1b" class="correct-label">Mark as Correct</label>
+                                </div>
+                                
+                                <div class="option-group">
+                                    <input type="radio" name="correct1" value="C" id="q1c">
+                                    <input type="text" name="option1C" placeholder="Option C" required>
+                                    <label for="q1c" class="correct-label">Mark as Correct</label>
+                                </div>
+                                
+                                <div class="option-group">
+                                    <input type="radio" name="correct1" value="D" id="q1d">
+                                    <input type="text" name="option1D" placeholder="Option D" required>
+                                    <label for="q1d" class="correct-label">Mark as Correct</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="closeModal('mcqModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">✅ Create Quiz</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // Teacher-specific styles
+        const teacherStyles = `
+            .teacher-badge {
+                background: var(--success);
+                color: white;
+                padding: 0.25rem 0.75rem;
+                border-radius: var(--radius-full);
+                font-size: 0.8rem;
+                font-weight: 600;
+                margin-left: 0.75rem;
+            }
+            
+            .teacher-welcome {
+                background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            }
+            
+            .teacher-avatar {
+                background: var(--success);
+            }
+            
+            .teacher-actions-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .action-card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-xl);
+                padding: 2rem;
+                text-align: center;
+                cursor: pointer;
+                transition: all var(--transition-normal);
+            }
+            
+            .action-card:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-lg);
+                border-color: var(--success);
+            }
+            
+            .action-icon {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            
+            .action-card h3 {
+                font-size: 1.1rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+            }
+            
+            .action-card p {
+                font-size: 0.9rem;
+                color: var(--text-secondary);
+            }
+            
+            .classes-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .class-card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-xl);
+                padding: 1.5rem;
+                box-shadow: var(--shadow-sm);
+                transition: all var(--transition-normal);
+            }
+            
+            .class-card:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-md);
+            }
+            
+            .class-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 1.5rem;
+            }
+            
+            .class-info h3 {
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+            }
+            
+            .student-count {
+                background: var(--surface-secondary);
+                color: var(--text-secondary);
+                padding: 0.25rem 0.75rem;
+                border-radius: var(--radius-full);
+                font-size: 0.8rem;
+                font-weight: 500;
+            }
+            
+            .class-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: var(--radius-lg);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                color: white;
+                box-shadow: var(--shadow-md);
+            }
+            
+            .class-stats {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .stat-row {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.9rem;
+            }
+            
+            .stat-label {
+                color: var(--text-secondary);
+            }
+            
+            .stat-value {
+                font-weight: 500;
+                color: var(--text-primary);
+            }
+            
+            .class-actions {
+                display: flex;
+                gap: 0.75rem;
+            }
+            
+            .class-actions .btn {
+                flex: 1;
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
+            }
+            
+            /* Modal Styles */
+            .modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: none;
+                align-items: center;
+                justify-content: center;
+                z-index: 2000;
+                backdrop-filter: blur(4px);
+            }
+            
+            .modal.active {
+                display: flex;
+            }
+            
+            .modal-content {
+                background: var(--surface);
+                border-radius: var(--radius-xl);
+                max-width: 600px;
+                width: 90%;
+                max-height: 90vh;
+                overflow-y: auto;
+                box-shadow: var(--shadow-2xl);
+            }
+            
+            .modal-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1.5rem 2rem;
+                border-bottom: 1px solid var(--border);
+            }
+            
+            .modal-header h3 {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--text-primary);
+            }
+            
+            .modal-close {
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--text-muted);
+                padding: 0.5rem;
+                border-radius: var(--radius);
+                transition: all var(--transition-fast);
+            }
+            
+            .modal-close:hover {
+                color: var(--text-primary);
+                background: var(--surface-secondary);
+            }
+            
+            .modal-body {
+                padding: 2rem;
+            }
+            
+            .form-row {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+            
+            .form-group label {
+                display: block;
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+            }
+            
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                font-size: 0.95rem;
+                transition: border-color var(--transition-fast);
+            }
+            
+            .form-group input:focus,
+            .form-group select:focus,
+            .form-group textarea:focus {
+                outline: none;
+                border-color: var(--accent);
+                box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            }
+            
+            .file-upload-area {
+                border: 2px dashed var(--border);
+                border-radius: var(--radius-lg);
+                padding: 2rem;
+                text-align: center;
+                cursor: pointer;
+                transition: all var(--transition-fast);
+            }
+            
+            .file-upload-area:hover {
+                border-color: var(--accent);
+                background: rgba(99, 102, 241, 0.05);
+            }
+            
+            .file-hint {
+                font-size: 0.8rem;
+                color: var(--text-muted);
+                margin-top: 0.5rem;
+            }
+            
+            .mcq-builder {
+                border: 1px solid var(--border);
+                border-radius: var(--radius-lg);
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .question-block {
+                margin-bottom: 2rem;
+            }
+            
+            .question-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 1rem;
+            }
+            
+            .question-header h4 {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: var(--text-primary);
+            }
+            
+            .btn-small {
+                padding: 0.375rem 0.75rem;
+                font-size: 0.8rem;
+            }
+            
+            .options-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .option-group {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .option-group input[type="radio"] {
+                width: auto;
+                margin-right: 0.5rem;
+            }
+            
+            .correct-label {
+                font-size: 0.8rem;
+                color: var(--text-muted);
+                cursor: pointer;
+            }
+            
+            .form-actions {
+                display: flex;
+                gap: 1rem;
+                justify-content: flex-end;
+                margin-top: 2rem;
+                padding-top: 1.5rem;
+                border-top: 1px solid var(--border);
+            }
+            
+            @media (max-width: 768px) {
+                .teacher-actions-grid,
+                .classes-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .class-actions {
+                    flex-direction: column;
+                }
+                
+                .form-actions {
+                    flex-direction: column-reverse;
+                }
+                
+                .options-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        `;
+        
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = teacherStyles;
+        document.head.appendChild(styleSheet);
+        
+        // Teacher functionality
+        let questionCount = 1;
+        
+        function openUploadModal() {
+            document.getElementById('uploadModal').classList.add('active');
+        }
+        
+        function openMCQModal() {
+            document.getElementById('mcqModal').classList.add('active');
+        }
+        
+        function openNotesModal() {
+            if (window.edunabhaApp) window.edunabhaApp.showNotification('Notes upload feature coming soon!', 'info');
+        }
+
+        function viewAnalytics() {
+            if (window.edunabhaApp) window.edunabhaApp.showNotification('Analytics dashboard coming soon!', 'info');
+        }
+
+        function createNewClass() {
+            if (window.edunabhaApp) window.edunabhaApp.showNotification('Class creation feature coming soon!', 'info');
+        }
+
+        function viewStudents(classId) {
+            if (window.edunabhaApp) window.edunabhaApp.showNotification(`Loading students for ${classId}...`, 'info');
+        }
+
+        function manageContent(classId) {
+            if (window.edunabhaApp) window.edunabhaApp.showNotification(`Opening content management for ${classId}...`, 'info');
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+        
+        function addQuestion() {
+            questionCount++;
+            const mcqBuilder = document.getElementById('mcqBuilder');
+            
+            const questionHTML = `
+                <div class="question-block">
+                    <div class="question-header">
+                        <h4>Question ${questionCount}</h4>
+                        <button type="button" class="btn btn-outline btn-small" onclick="removeQuestion(this)">✕ Remove</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Question</label>
+                        <textarea name="question${questionCount}" placeholder="Enter your question here" required rows="2"></textarea>
+                    </div>
+                    
+                    <div class="options-grid">
+                        <div class="option-group">
+                            <input type="radio" name="correct${questionCount}" value="A" id="q${questionCount}a" required>
+                            <input type="text" name="option${questionCount}A" placeholder="Option A" required>
+                            <label for="q${questionCount}a" class="correct-label">Mark as Correct</label>
+                        </div>
+                        
+                        <div class="option-group">
+                            <input type="radio" name="correct${questionCount}" value="B" id="q${questionCount}b">
+                            <input type="text" name="option${questionCount}B" placeholder="Option B" required>
+                            <label for="q${questionCount}b" class="correct-label">Mark as Correct</label>
+                        </div>
+                        
+                        <div class="option-group">
+                            <input type="radio" name="correct${questionCount}" value="C" id="q${questionCount}c">
+                            <input type="text" name="option${questionCount}C" placeholder="Option C" required>
+                            <label for="q${questionCount}c" class="correct-label">Mark as Correct</label>
+                        </div>
+                        
+                        <div class="option-group">
+                            <input type="radio" name="correct${questionCount}" value="D" id="q${questionCount}d">
+                            <input type="text" name="option${questionCount}D" placeholder="Option D" required>
+                            <label for="q${questionCount}d" class="correct-label">Mark as Correct</label>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            mcqBuilder.insertAdjacentHTML('beforeend', questionHTML);
+        }
+        
+        function removeQuestion(button) {
+            button.closest('.question-block').remove();
+        }
+        
+        // Form handlers
+        document.getElementById('videoUploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (window.edunabhaApp) window.edunabhaApp.showNotification('Uploading video...', 'info');
+
+            setTimeout(() => {
+                if (window.edunabhaApp) window.edunabhaApp.showNotification('Video uploaded successfully!', 'success');
+                closeModal('uploadModal');
+                this.reset();
+            }, 2000);
+        });
+
+        document.getElementById('mcqCreationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (window.edunabhaApp) window.edunabhaApp.showNotification('Creating quiz...', 'info');
+
+            setTimeout(() => {
+                if (window.edunabhaApp) window.edunabhaApp.showNotification('Quiz created successfully!', 'success');
+                closeModal('mcqModal');
+                this.reset();
+                questionCount = 1;
+                // Reset to single question
+                const mcqBuilder = document.getElementById('mcqBuilder');
+                const questionBlocks = mcqBuilder.querySelectorAll('.question-block');
+                for(let i = 1; i < questionBlocks.length; i++) {
+                    questionBlocks[i].remove();
+                }
+            }, 1500);
+        });
+        
+        // Close modals when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
