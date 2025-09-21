@@ -1748,6 +1748,34 @@ body:not(.auth-page) {
     background: var(--science);
 }
 
+.game-icon.computers {
+    background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
+}
+
+.game-icon.physics {
+    background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+}
+
+.game-icon.chemistry {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+}
+
+.game-icon.geometry {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+}
+
+.game-icon.coding {
+    background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+}
+
+.game-icon.electricity {
+    background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+}
+
+.game-icon.environment {
+    background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+}
+
 .game-icon.trivia {
     background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
 }

@@ -42,6 +42,263 @@ const gameQuestions = {
             points: 15
         }
     ],
+    // STEM Games for Classes 6-10
+    science: [
+        {
+            question: "What is the process by which plants make their own food?",
+            options: ["Respiration", "Photosynthesis", "Transpiration", "Digestion"],
+            correct: 1,
+            points: 15
+        },
+        {
+            question: "Which organ pumps blood in the human body?",
+            options: ["Lungs", "Brain", "Heart", "Liver"],
+            correct: 2,
+            points: 10
+        },
+        {
+            question: "What is the boiling point of water at sea level?",
+            options: ["0°C", "50°C", "100°C", "150°C"],
+            correct: 2,
+            points: 15
+        },
+        {
+            question: "Which gas do we breathe out during respiration?",
+            options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+            correct: 1,
+            points: 15
+        },
+        {
+            question: "What is the largest planet in our solar system?",
+            options: ["Earth", "Mars", "Jupiter", "Saturn"],
+            correct: 2,
+            points: 10
+        }
+    ],
+    computers: [
+        {
+            question: "What does CPU stand for?",
+            options: ["Central Processing Unit", "Computer Power Unit", "Control Panel Unit", "Central Power Unit"],
+            correct: 0,
+            points: 15
+        },
+        {
+            question: "Which device is used to input data into a computer?",
+            options: ["Monitor", "Printer", "Keyboard", "Speaker"],
+            correct: 2,
+            points: 10
+        },
+        {
+            question: "What is the brain of the computer called?",
+            options: ["Hard Disk", "RAM", "CPU", "Monitor"],
+            correct: 2,
+            points: 15
+        },
+        {
+            question: "Which of these is an operating system?",
+            options: ["Microsoft Word", "Windows", "Google Chrome", "Photoshop"],
+            correct: 1,
+            points: 15
+        },
+        {
+            question: "What does 'www' stand for in a website address?",
+            options: ["World Wide Web", "World Web Way", "Wide World Web", "Web World Wide"],
+            correct: 0,
+            points: 20
+        }
+    ],
+    physics: [
+        {
+            question: "What causes objects to fall towards the ground?",
+            options: ["Magnetism", "Electricity", "Gravity", "Wind"],
+            correct: 2,
+            points: 15
+        },
+        {
+            question: "What is the SI unit of length?",
+            options: ["Gram", "Liter", "Meter", "Second"],
+            correct: 2,
+            points: 10
+        },
+        {
+            question: "Which type of energy does a stretched rubber band have?",
+            options: ["Sound energy", "Light energy", "Potential energy", "Kinetic energy"],
+            correct: 2,
+            points: 15
+        },
+        {
+            question: "What happens to the speed of a moving object when friction acts on it?",
+            options: ["Increases", "Decreases", "Remains same", "Becomes zero"],
+            correct: 1,
+            points: 15
+        },
+        {
+            question: "Which force keeps planets in orbit around the sun?",
+            options: ["Magnetic force", "Gravitational force", "Electric force", "Nuclear force"],
+            correct: 1,
+            points: 20
+        }
+    ],
+    chemistry: [
+        {
+            question: "What is the chemical symbol for water?",
+            options: ["Wa", "H2O", "HO", "H2O2"],
+            correct: 1,
+            points: 10
+        },
+        {
+            question: "Which state of matter has a definite shape and volume?",
+            options: ["Gas", "Liquid", "Solid", "Plasma"],
+            correct: 2,
+            points: 10
+        },
+        {
+            question: "What is formed when an acid reacts with a base?",
+            options: ["Acid", "Base", "Salt", "Water"],
+            correct: 2,
+            points: 15
+        },
+        {
+            question: "Which element is essential for combustion?",
+            options: ["Nitrogen", "Oxygen", "Carbon dioxide", "Hydrogen"],
+            correct: 1,
+            points: 15
+        },
+        {
+            question: "What is the pH value of pure water?",
+            options: ["0", "7", "14", "1"],
+            correct: 1,
+            points: 15
+        }
+    ],
+    geometry: [
+        {
+            question: "How many sides does a triangle have?",
+            options: ["2", "3", "4", "5"],
+            correct: 1,
+            points: 5
+        },
+        {
+            question: "What is the sum of angles in a triangle?",
+            options: ["90°", "180°", "270°", "360°"],
+            correct: 1,
+            points: 15
+        },
+        {
+            question: "Which shape has all sides equal and all angles equal?",
+            options: ["Rectangle", "Triangle", "Square", "Circle"],
+            correct: 2,
+            points: 10
+        },
+        {
+            question: "What is the area formula for a rectangle?",
+            options: ["length × breadth", "length + breadth", "length ÷ breadth", "length - breadth"],
+            correct: 0,
+            points: 15
+        },
+        {
+            question: "How many faces does a cube have?",
+            options: ["4", "6", "8", "12"],
+            correct: 1,
+            points: 10
+        }
+    ],
+    coding: [
+        {
+            question: "What is a sequence of instructions given to a computer called?",
+            options: ["Hardware", "Software", "Program", "Data"],
+            correct: 2,
+            points: 15
+        },
+        {
+            question: "Which of these is a programming language?",
+            options: ["HTML", "CSS", "JavaScript", "All of the above"],
+            correct: 3,
+            points: 20
+        },
+        {
+            question: "What does 'debugging' mean in programming?",
+            options: ["Writing code", "Finding and fixing errors", "Running programs", "Saving files"],
+            correct: 1,
+            points: 15
+        },
+        {
+            question: "Which symbol is used to start a comment in most programming languages?",
+            options: ["//", "#", "/*", "Both // and #"],
+            correct: 3,
+            points: 15
+        },
+        {
+            question: "What is an 'algorithm'?",
+            options: ["A computer", "A step-by-step procedure", "A programming language", "A type of software"],
+            correct: 1,
+            points: 15
+        }
+    ],
+    electricity: [
+        {
+            question: "What is the unit of electric current?",
+            options: ["Volt", "Ampere", "Watt", "Ohm"],
+            correct: 1,
+            points: 15
+        },
+        {
+            question: "Which material is a good conductor of electricity?",
+            options: ["Plastic", "Wood", "Copper", "Rubber"],
+            correct: 2,
+            points: 10
+        },
+        {
+            question: "What does a switch do in an electric circuit?",
+            options: ["Creates electricity", "Completes or breaks the circuit", "Stores electricity", "Measures voltage"],
+            correct: 1,
+            points: 15
+        },
+        {
+            question: "Which of these is a source of electricity?",
+            options: ["Wire", "Switch", "Battery", "Bulb"],
+            correct: 2,
+            points: 10
+        },
+        {
+            question: "What happens when you connect a bulb to a battery with wires?",
+            options: ["Nothing", "The bulb glows", "The battery heats up", "The wires melt"],
+            correct: 1,
+            points: 10
+        }
+    ],
+    environment: [
+        {
+            question: "What is the main cause of air pollution?",
+            options: ["Trees", "Factories and vehicles", "Oceans", "Mountains"],
+            correct: 1,
+            points: 15
+        },
+        {
+            question: "Which gas is essential for photosynthesis?",
+            options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+            correct: 1,
+            points: 15
+        },
+        {
+            question: "What should we do to save water?",
+            options: ["Keep taps running", "Fix leaking taps", "Waste water", "Pollute rivers"],
+            correct: 1,
+            points: 10
+        },
+        {
+            question: "Which of these is a renewable source of energy?",
+            options: ["Coal", "Petrol", "Solar energy", "Natural gas"],
+            correct: 2,
+            points: 15
+        },
+        {
+            question: "What is deforestation?",
+            options: ["Planting trees", "Cutting down trees", "Watering plants", "Growing crops"],
+            correct: 1,
+            points: 15
+        }
+    ],
     word: [
         {
             clue: "A large body of water surrounded by land",
@@ -154,7 +411,15 @@ function startGame(gameType) {
         math: 'Math Quiz Challenge',
         word: 'Word Puzzle Quest',
         memory: 'Science Memory Match',
-        trivia: 'Knowledge Trivia'
+        trivia: 'Knowledge Trivia',
+        science: 'Science Quiz',
+        computers: 'Computer Science Quiz',
+        physics: 'Physics Quiz',
+        chemistry: 'Chemistry Quiz',
+        geometry: 'Geometry Quiz',
+        coding: 'Coding Basics Quiz',
+        electricity: 'Electricity Quiz',
+        environment: 'Environmental Science Quiz'
     };
     document.getElementById('gameTitle').textContent = titles[gameType];
 
@@ -205,6 +470,14 @@ function loadGameContent() {
     switch (currentGame) {
         case 'math':
         case 'trivia':
+        case 'science':
+        case 'computers':
+        case 'physics':
+        case 'chemistry':
+        case 'geometry':
+        case 'coding':
+        case 'electricity':
+        case 'environment':
             loadQuizGame();
             break;
         case 'word':
