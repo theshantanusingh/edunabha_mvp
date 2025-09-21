@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course View - Edunabha</title>
+    <title>Mathematics - Algebra Fundamentals - Edunabha</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -21,6 +21,8 @@
                 <li><a href="courses.html" class="nav-link">📚 Courses</a></li>
                 <li><a href="practice.html" class="nav-link">✍️ Practice</a></li>
                 <li><a href="continue-learning.html" class="nav-link">▶️ Continue</a></li>
+                <li><a href="games.html" class="nav-link">🎮 Games</a></li>
+                <li><a href="ai.html" class="nav-link">🤖 AI Assistant</a></li>
                 <li><a href="teacher.html" class="nav-link">👨‍🏫 Teacher Mode</a></li>
             </ul>
 
@@ -29,9 +31,9 @@
                     <div class="user-avatar">R</div>
                     <span class="user-name">Rajesh</span>
                     <div class="user-dropdown">
-                        <a href="#" onclick="showProfile()">👤 Profile</a>
-                        <a href="#" onclick="showSettings()">⚙️ Settings</a>
-                        <a href="login.html">🚪 Sign Out</a>
+                        <a href="#" onclick="showProfile()">Profile</a>
+                        <a href="#" onclick="showSettings()">Settings</a>
+                        <a href="login.html">Sign Out</a>
                     </div>
                 </div>
 
@@ -53,23 +55,28 @@
                     <div class="course-info">
                         <div class="course-icon math">📐</div>
                         <div class="course-details">
-                            <h1 id="courseTitle">Mathematics</h1>
-                            <p id="courseDescription">Complete CBSE Class 10 Mathematics course covering all chapters with detailed explanations.</p>
+                            <h1>Mathematics - Algebra Fundamentals</h1>
+                            <p>Master the basics of algebra with step-by-step lessons and practice problems</p>
                             <div class="course-meta">
-                                <span class="course-class">Class 10</span>
-                                <span class="course-lessons">20 Lessons</span>
-                                <span class="course-duration">40 Hours</span>
+                                <span>📚 24 Lessons</span>
+                                <span>⏱️ 8 Hours Total</span>
+                                <span>🎯 Intermediate Level</span>
+                                <span>⭐ 4.8/5 Rating</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="course-progress">
-                        <div class="progress-circle">
-                            <div class="progress-fill" id="progressFill"></div>
-                            <div class="progress-text">
-                                <span id="progressPercent">65%</span>
-                                <span class="progress-label">Complete</span>
-                            </div>
+                        <div class="progress-summary">
+                            <h3>Your Progress: 75% Complete</h3>
+                            <p>18 of 24 lessons completed</p>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <div class="progress-actions">
+                            <button class="btn btn-primary" onclick="continueCourse()">Continue Learning</button>
+                            <button class="btn btn-outline" onclick="viewCertificate()">View Certificate</button>
                         </div>
                     </div>
                 </div>
@@ -78,24 +85,97 @@
             <!-- Course Content -->
             <section class="course-content-section">
                 <div class="course-layout">
-                    <!-- Lessons Sidebar -->
-                    <div class="lessons-sidebar">
-                        <h3>Course Content</h3>
-                        <div class="lessons-list" id="lessonsList">
-                            <!-- Lessons will be loaded dynamically -->
+                    <!-- Sidebar -->
+                    <div class="course-sidebar">
+                        <div class="sidebar-header">
+                            <h3>Course Content</h3>
+                        </div>
+
+                        <div class="course-modules" id="courseModules">
+                            <!-- Modules will be loaded dynamically -->
                         </div>
                     </div>
 
                     <!-- Main Content Area -->
-                    <div class="lesson-content">
-                        <div id="lessonContent">
+                    <div class="course-main">
+                        <div class="lesson-content" id="lessonContent">
                             <!-- Lesson content will be loaded here -->
-                            <div class="lesson-placeholder">
-                                <div class="placeholder-icon">📖</div>
-                                <h3>Select a lesson to begin</h3>
-                                <p>Choose a lesson from the sidebar to start learning</p>
-                            </div>
                         </div>
+
+                        <div class="lesson-navigation">
+                            <button class="btn btn-outline" id="prevLesson" onclick="previousLesson()">Previous Lesson</button>
+                            <button class="btn btn-primary" id="nextLesson" onclick="nextLesson()">Next Lesson</button>
+                            <button class="btn btn-outline" onclick="markComplete()">Mark as Complete</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Course Resources -->
+            <section class="course-resources">
+                <div class="section-header">
+                    <h2>Course Resources</h2>
+                    <p>Additional materials to help you learn</p>
+                </div>
+
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">📄</div>
+                        <h4>Formula Sheet</h4>
+                        <p>All important algebra formulas in one place</p>
+                        <button class="btn btn-outline btn-sm" onclick="downloadResource('formula-sheet')">Download</button>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">📝</div>
+                        <h4>Practice Worksheets</h4>
+                        <p>Additional practice problems with solutions</p>
+                        <button class="btn btn-outline btn-sm" onclick="downloadResource('worksheets')">Download</button>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">🎥</div>
+                        <h4>Video Tutorials</h4>
+                        <p>Watch step-by-step video explanations</p>
+                        <button class="btn btn-outline btn-sm" onclick="openVideos()">Watch Videos</button>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">🤖</div>
+                        <h4>AI Tutor</h4>
+                        <p>Get personalized help with difficult concepts</p>
+                        <button class="btn btn-outline btn-sm" onclick="openAITutor()">Ask AI</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Courses -->
+            <section class="related-courses">
+                <div class="section-header">
+                    <h2>Continue Your Learning</h2>
+                    <p>Recommended next courses based on your progress</p>
+                </div>
+
+                <div class="related-courses-grid">
+                    <div class="related-course-card">
+                        <div class="course-icon math">🔢</div>
+                        <h4>Advanced Algebra</h4>
+                        <p>Build on your algebra skills with advanced topics</p>
+                        <button class="btn btn-primary btn-sm" onclick="enrollCourse('advanced-algebra')">Enroll Now</button>
+                    </div>
+
+                    <div class="related-course-card">
+                        <div class="course-icon science">📊</div>
+                        <h4>Statistics Basics</h4>
+                        <p>Learn statistical analysis and data interpretation</p>
+                        <button class="btn btn-primary btn-sm" onclick="enrollCourse('statistics')">Enroll Now</button>
+                    </div>
+
+                    <div class="related-course-card">
+                        <div class="course-icon math">📈</div>
+                        <h4>Calculus Introduction</h4>
+                        <p>Discover the fundamentals of calculus</p>
+                        <button class="btn btn-primary btn-sm" onclick="enrollCourse('calculus')">Enroll Now</button>
                     </div>
                 </div>
             </section>
@@ -103,545 +183,6 @@
     </main>
 
     <script src="/assets/js/main.js"></script>
-    <script>
-        // Course View functionality
-        class CourseView {
-            constructor() {
-                this.currentCourse = this.getCurrentCourse();
-                this.currentLesson = null;
-                this.init();
-            }
-
-            init() {
-                this.loadCourseData();
-                this.loadLessonsList();
-                this.setupEventListeners();
-            }
-
-            getCurrentCourse() {
-                // Get course from URL parameters or localStorage
-                const urlParams = new URLSearchParams(window.location.search);
-                const courseId = urlParams.get('course') || localStorage.getItem('current_course_id') || '1';
-
-                // Mock course data (can be replaced with API call)
-                const courses = {
-                    '1': {
-                        id: 1,
-                        title: 'Mathematics',
-                        subject: 'mathematics',
-                        class: '10',
-                        description: 'Complete CBSE Class 10 Mathematics course covering all chapters with detailed explanations.',
-                        icon: '📐',
-                        color: 'math',
-                        progress: 65,
-                        lessons: [
-                            { id: 1, title: 'Real Numbers', completed: true, duration: '45 min' },
-                            { id: 2, title: 'Polynomials', completed: true, duration: '60 min' },
-                            { id: 3, title: 'Linear Equations', completed: true, duration: '50 min' },
-                            { id: 4, title: 'Quadratic Equations', completed: false, duration: '75 min', current: true },
-                            { id: 5, title: 'Arithmetic Progressions', completed: false, duration: '55 min' },
-                            { id: 6, title: 'Triangles', completed: false, duration: '65 min' },
-                            { id: 7, title: 'Coordinate Geometry', completed: false, duration: '70 min' },
-                            { id: 8, title: 'Trigonometry', completed: false, duration: '80 min' }
-                        ]
-                    }
-                };
-
-                return courses[courseId] || courses['1'];
-            }
-
-            loadCourseData() {
-                // Update course header
-                document.getElementById('courseTitle').textContent = this.currentCourse.title;
-                document.getElementById('courseDescription').textContent = this.currentCourse.description;
-                document.querySelector('.course-icon').textContent = this.currentCourse.icon;
-                document.querySelector('.course-icon').className = `course-icon ${this.currentCourse.color}`;
-                document.querySelector('.course-class').textContent = `Class ${this.currentCourse.class}`;
-
-                // Update progress
-                const progressFill = document.getElementById('progressFill');
-                const progressPercent = document.getElementById('progressPercent');
-                progressFill.style.width = `${this.currentCourse.progress}%`;
-                progressPercent.textContent = `${this.currentCourse.progress}%`;
-            }
-
-            loadLessonsList() {
-                const lessonsList = document.getElementById('lessonsList');
-                if (!lessonsList) return;
-
-                lessonsList.innerHTML = this.currentCourse.lessons.map(lesson => `
-                    <div class="lesson-item ${lesson.completed ? 'completed' : ''} ${lesson.current ? 'current' : ''}"
-                         data-lesson="${lesson.id}" onclick="selectLesson(${lesson.id})">
-                        <div class="lesson-status">
-                            ${lesson.completed ? '✅' : lesson.current ? '▶️' : '⭕'}
-                        </div>
-                        <div class="lesson-info">
-                            <h4>${lesson.title}</h4>
-                            <span class="lesson-duration">${lesson.duration}</span>
-                        </div>
-                        ${lesson.current ? '<div class="current-indicator">Current</div>' : ''}
-                    </div>
-                `).join('');
-            }
-
-            selectLesson(lessonId) {
-                const lesson = this.currentCourse.lessons.find(l => l.id === lessonId);
-                if (!lesson) return;
-
-                this.currentLesson = lesson;
-                this.loadLessonContent(lesson);
-                this.updateLessonStatus(lessonId);
-            }
-
-            loadLessonContent(lesson) {
-                const contentArea = document.getElementById('lessonContent');
-                if (!contentArea) return;
-
-                // Mock lesson content (can be replaced with actual content)
-                const content = this.getLessonContent(lesson);
-
-                contentArea.innerHTML = `
-                    <div class="lesson-header">
-                        <h2>${lesson.title}</h2>
-                        <div class="lesson-meta">
-                            <span class="lesson-duration">Duration: ${lesson.duration}</span>
-                            <span class="lesson-type">Video Lesson</span>
-                        </div>
-                    </div>
-
-                    <div class="lesson-video-section">
-                        <div class="video-placeholder">
-                            <div class="video-icon">🎥</div>
-                            <p>Video content would be displayed here</p>
-                            <button class="btn btn-primary" onclick="playVideo('${lesson.title}')">▶️ Play Video</button>
-                        </div>
-                    </div>
-
-                    <div class="lesson-content-section">
-                        ${content}
-                    </div>
-
-                    <div class="lesson-actions">
-                        <button class="btn btn-outline" onclick="previousLesson()" id="prevBtn" disabled>⬅️ Previous</button>
-                        <button class="btn btn-primary" onclick="nextLesson()" id="nextBtn">Next Lesson ➡️</button>
-                    </div>
-                `;
-
-                this.updateNavigationButtons();
-            }
-
-            getLessonContent(lesson) {
-                // Mock content based on lesson title
-                const contents = {
-                    'Real Numbers': `
-                        <h3>Introduction to Real Numbers</h3>
-                        <p>Real numbers include all rational and irrational numbers. They can be positive, negative, or zero.</p>
-                        <div class="content-block">
-                            <h4>Types of Real Numbers:</h4>
-                            <ul>
-                                <li><strong>Rational Numbers:</strong> Can be expressed as p/q where p and q are integers</li>
-                                <li><strong>Irrational Numbers:</strong> Cannot be expressed as fractions (π, √2, etc.)</li>
-                            </ul>
-                        </div>
-                    `,
-                    'Polynomials': `
-                        <h3>Understanding Polynomials</h3>
-                        <p>A polynomial is an expression consisting of variables and coefficients.</p>
-                        <div class="content-block">
-                            <h4>Standard Form:</h4>
-                            <p>ax^n + bx^(n-1) + ... + cx + d</p>
-                            <p><strong>Example:</strong> 2x³ + 3x² - 5x + 1</p>
-                        </div>
-                    `,
-                    'Quadratic Equations': `
-                        <h3>Quadratic Equations</h3>
-                        <p>Equations of the form ax² + bx + c = 0 where a ≠ 0.</p>
-                        <div class="content-block">
-                            <h4>Quadratic Formula:</h4>
-                            <p>x = (-b ± √(b² - 4ac)) / 2a</p>
-                            <p><strong>Example:</strong> x² - 5x + 6 = 0</p>
-                            <p><strong>Solution:</strong> x = 2 or x = 3</p>
-                        </div>
-                    `
-                };
-
-                return contents[lesson.title] || `
-                    <h3>${lesson.title}</h3>
-                    <p>Lesson content for ${lesson.title} will be displayed here.</p>
-                    <div class="content-block">
-                        <p>This section will contain detailed explanations, examples, and practice problems.</p>
-                    </div>
-                `;
-            }
-
-            updateLessonStatus(lessonId) {
-                // Update visual status of lessons
-                document.querySelectorAll('.lesson-item').forEach(item => {
-                    item.classList.remove('current');
-                });
-
-                const currentItem = document.querySelector(`[data-lesson="${lessonId}"]`);
-                if (currentItem) {
-                    currentItem.classList.add('current');
-                }
-            }
-
-            updateNavigationButtons() {
-                const prevBtn = document.getElementById('prevBtn');
-                const nextBtn = document.getElementById('nextBtn');
-
-                if (!this.currentLesson) return;
-
-                const currentIndex = this.currentCourse.lessons.findIndex(l => l.id === this.currentLesson.id);
-
-                prevBtn.disabled = currentIndex === 0;
-                nextBtn.disabled = currentIndex === this.currentCourse.lessons.length - 1;
-
-                if (currentIndex === this.currentCourse.lessons.length - 1) {
-                    nextBtn.textContent = 'Complete Course 🎉';
-                } else {
-                    nextBtn.textContent = 'Next Lesson ➡️';
-                }
-            }
-
-            setupEventListeners() {
-                // Keyboard navigation
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'ArrowLeft') {
-                        previousLesson();
-                    } else if (e.key === 'ArrowRight') {
-                        nextLesson();
-                    }
-                });
-            }
-        }
-
-        // Global functions
-        function selectLesson(lessonId) {
-            window.courseView.selectLesson(lessonId);
-        }
-
-        function playVideo(title) {
-            if (window.edunabhaApp) {
-                window.edunabhaApp.showNotification(`Playing video: ${title}`, 'info');
-            }
-        }
-
-        function previousLesson() {
-            if (!window.courseView.currentLesson) return;
-
-            const currentIndex = window.courseView.currentCourse.lessons.findIndex(
-                l => l.id === window.courseView.currentLesson.id
-            );
-
-            if (currentIndex > 0) {
-                const prevLesson = window.courseView.currentCourse.lessons[currentIndex - 1];
-                window.courseView.selectLesson(prevLesson.id);
-            }
-        }
-
-        function nextLesson() {
-            if (!window.courseView.currentLesson) return;
-
-            const currentIndex = window.courseView.currentCourse.lessons.findIndex(
-                l => l.id === window.courseView.currentLesson.id
-            );
-
-            if (currentIndex < window.courseView.currentCourse.lessons.length - 1) {
-                const nextLesson = window.courseView.currentCourse.lessons[currentIndex + 1];
-                window.courseView.selectLesson(nextLesson.id);
-            } else {
-                // Course completed
-                if (window.edunabhaApp) {
-                    window.edunabhaApp.showNotification('Congratulations! Course completed! 🎉', 'success');
-                }
-                setTimeout(() => {
-                    window.location.href = 'courses.html';
-                }, 2000);
-            }
-        }
-
-        // Initialize when DOM loads
-        document.addEventListener('DOMContentLoaded', () => {
-            window.courseView = new CourseView();
-        });
-
-        // Additional CSS for course view
-        const additionalStyles = `
-            .course-header-section {
-                margin-bottom: 2rem;
-            }
-
-            .course-header {
-                background: var(--surface);
-                border: 1px solid var(--border);
-                border-radius: var(--radius-xl);
-                padding: 2rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                box-shadow: var(--shadow-sm);
-            }
-
-            .course-info {
-                display: flex;
-                gap: 1.5rem;
-                align-items: flex-start;
-            }
-
-            .course-icon {
-                width: 80px;
-                height: 80px;
-                border-radius: var(--radius-lg);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 2.5rem;
-                box-shadow: var(--shadow-md);
-            }
-
-            .course-details h1 {
-                font-size: 2rem;
-                font-weight: 700;
-                margin-bottom: 0.5rem;
-                color: var(--text-primary);
-            }
-
-            .course-details p {
-                color: var(--text-secondary);
-                margin-bottom: 1rem;
-                max-width: 500px;
-            }
-
-            .course-meta {
-                display: flex;
-                gap: 1rem;
-                font-size: 0.9rem;
-                color: var(--text-muted);
-            }
-
-            .progress-circle {
-                width: 120px;
-                height: 120px;
-                border-radius: 50%;
-                background: conic-gradient(var(--accent) 65%, var(--surface-secondary) 0%);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-            }
-
-            .progress-fill {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                border-radius: 50%;
-                background: var(--surface);
-                clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50%);
-            }
-
-            .progress-text {
-                text-align: center;
-                z-index: 1;
-            }
-
-            .progress-text span:first-child {
-                font-size: 1.5rem;
-                font-weight: 700;
-                color: var(--accent);
-                display: block;
-            }
-
-            .progress-label {
-                font-size: 0.8rem;
-                color: var(--text-muted);
-            }
-
-            .course-layout {
-                display: grid;
-                grid-template-columns: 300px 1fr;
-                gap: 2rem;
-            }
-
-            .lessons-sidebar {
-                background: var(--surface);
-                border: 1px solid var(--border);
-                border-radius: var(--radius-xl);
-                padding: 1.5rem;
-                height: fit-content;
-                sticky: top;
-                top: 2rem;
-            }
-
-            .lessons-sidebar h3 {
-                font-size: 1.1rem;
-                font-weight: 600;
-                margin-bottom: 1rem;
-                color: var(--text-primary);
-            }
-
-            .lesson-item {
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                padding: 1rem;
-                border-radius: var(--radius-lg);
-                cursor: pointer;
-                transition: all var(--transition-fast);
-                margin-bottom: 0.5rem;
-                border: 1px solid transparent;
-            }
-
-            .lesson-item:hover {
-                background: var(--surface-secondary);
-                border-color: var(--border);
-            }
-
-            .lesson-item.completed {
-                background: rgba(34, 197, 94, 0.1);
-                border-color: var(--success);
-            }
-
-            .lesson-item.current {
-                background: rgba(99, 102, 241, 0.1);
-                border-color: var(--accent);
-                font-weight: 600;
-            }
-
-            .lesson-status {
-                font-size: 1.2rem;
-            }
-
-            .lesson-info h4 {
-                font-size: 0.95rem;
-                font-weight: 500;
-                margin-bottom: 0.25rem;
-                color: var(--text-primary);
-            }
-
-            .lesson-duration {
-                font-size: 0.8rem;
-                color: var(--text-muted);
-            }
-
-            .current-indicator {
-                background: var(--accent);
-                color: white;
-                padding: 0.25rem 0.5rem;
-                border-radius: var(--radius-full);
-                font-size: 0.7rem;
-                font-weight: 600;
-                margin-left: auto;
-            }
-
-            .lesson-content {
-                background: var(--surface);
-                border: 1px solid var(--border);
-                border-radius: var(--radius-xl);
-                padding: 2rem;
-                min-height: 600px;
-            }
-
-            .lesson-placeholder {
-                text-align: center;
-                padding: 4rem 2rem;
-                color: var(--text-muted);
-            }
-
-            .placeholder-icon {
-                font-size: 4rem;
-                margin-bottom: 1rem;
-                opacity: 0.5;
-            }
-
-            .lesson-header {
-                margin-bottom: 2rem;
-                padding-bottom: 1rem;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .lesson-header h2 {
-                font-size: 1.5rem;
-                font-weight: 600;
-                margin-bottom: 0.5rem;
-                color: var(--text-primary);
-            }
-
-            .lesson-meta {
-                display: flex;
-                gap: 1rem;
-                font-size: 0.9rem;
-                color: var(--text-muted);
-            }
-
-            .lesson-video-section {
-                margin-bottom: 2rem;
-            }
-
-            .video-placeholder {
-                background: var(--surface-secondary);
-                border: 2px dashed var(--border);
-                border-radius: var(--radius-lg);
-                padding: 3rem 2rem;
-                text-align: center;
-            }
-
-            .video-icon {
-                font-size: 3rem;
-                margin-bottom: 1rem;
-                opacity: 0.7;
-            }
-
-            .lesson-content-section {
-                margin-bottom: 2rem;
-            }
-
-            .content-block {
-                background: var(--surface-secondary);
-                border-radius: var(--radius-lg);
-                padding: 1.5rem;
-                margin: 1rem 0;
-            }
-
-            .content-block h4 {
-                font-size: 1rem;
-                font-weight: 600;
-                margin-bottom: 0.5rem;
-                color: var(--text-primary);
-            }
-
-            .lesson-actions {
-                display: flex;
-                justify-content: space-between;
-                padding-top: 1.5rem;
-                border-top: 1px solid var(--border);
-            }
-
-            @media (max-width: 1024px) {
-                .course-layout {
-                    grid-template-columns: 1fr;
-                }
-
-                .lessons-sidebar {
-                    position: static;
-                }
-
-                .course-header {
-                    flex-direction: column;
-                    text-align: center;
-                    gap: 1.5rem;
-                }
-
-                .lesson-actions {
-                    flex-direction: column;
-                    gap: 1rem;
-                }
-            }
-        `;
-
-        const styleSheet = document.createElement("style");
-        styleSheet.textContent = additionalStyles;
-        document.head.appendChild(styleSheet);
-    </script>
+    <script src="/assets/js/course-view.js"></script>
 </body>
 </html>

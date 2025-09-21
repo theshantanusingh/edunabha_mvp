@@ -981,13 +981,96 @@ function quickAction(action) {
     }
 }
 
-// Other AI Tools
+// Study Planner Functionality
 function openStudyPlanner() {
-    alert('Study Planner feature coming soon! This will help create personalized study schedules.');
+    currentAIModal = 'study-planner';
+    document.getElementById('aiTutorModal').classList.add('active');
+
+    const modalContent = document.getElementById('aiTutorMessages');
+    modalContent.innerHTML = `
+        <div class="study-planner-header">
+            <h3>📅 AI Study Planner</h3>
+            <p>Create personalized study schedules based on your goals and subjects</p>
+        </div>
+
+        <div class="study-planner-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Study Goal:</label>
+                    <select id="studyGoal">
+                        <option value="exam-prep">Exam Preparation</option>
+                        <option value="concept-mastery">Concept Mastery</option>
+                        <option value="homework">Homework Completion</option>
+                        <option value="skill-building">Skill Building</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Available Hours per Day:</label>
+                    <select id="studyHours">
+                        <option value="1">1 hour</option>
+                        <option value="2">2 hours</option>
+                        <option value="3">3 hours</option>
+                        <option value="4">4+ hours</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Subjects to Focus:</label>
+                    <div class="subject-checkboxes">
+                        <label><input type="checkbox" value="mathematics" checked> Mathematics</label>
+                        <label><input type="checkbox" value="science" checked> Science</label>
+                        <label><input type="checkbox" value="english"> English</label>
+                        <label><input type="checkbox" value="hindi"> Hindi</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Study Duration:</label>
+                    <select id="studyDuration">
+                        <option value="7">1 Week</option>
+                        <option value="14">2 Weeks</option>
+                        <option value="30">1 Month</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="generateStudyPlan()" style="width: 100%; margin-top: 1rem;">Generate Study Plan</button>
+        </div>
+
+        <div id="generatedStudyPlan" style="display: none;">
+            <h4>Your Personalized Study Plan</h4>
+            <div id="studyPlanContent"></div>
+        </div>
+    `;
 }
 
 function openWritingAssistant() {
-    alert('Writing Assistant feature coming soon! This will help with essay writing and grammar.');
+    currentAIModal = 'writing-assistant';
+    document.getElementById('aiTutorModal').classList.add('active');
+
+    const modalContent = document.getElementById('aiTutorMessages');
+    modalContent.innerHTML = `
+        <div class="writing-assistant-header">
+            <h3>✍️ AI Writing Assistant</h3>
+            <p>Get help with essays, assignments, and improve your writing skills</p>
+        </div>
+
+        <div class="writing-tools">
+            <div class="tool-tabs">
+                <button class="tool-tab active" onclick="switchWritingTool('essay')">Essay Writer</button>
+                <button class="tool-tab" onclick="switchWritingTool('grammar')">Grammar Check</button>
+                <button class="tool-tab" onclick="switchWritingTool('improve')">Improve Writing</button>
+                <button class="tool-tab" onclick="switchWritingTool('outline')">Outline Generator</button>
+            </div>
+
+            <div id="writingToolContent">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    `;
+
+    loadWritingTool('essay');
 }
 
 function openContentCreator() {
@@ -1054,6 +1137,564 @@ function editContent() {
 function downloadContent() {
     alert('Content downloaded as PDF file!');
 }
+
+function generateStudyPlan() {
+    const goal = document.getElementById('studyGoal').value;
+    const hours = parseInt(document.getElementById('studyHours').value);
+    const duration = parseInt(document.getElementById('studyDuration').value);
+    const subjects = Array.from(document.querySelectorAll('.subject-checkboxes input:checked')).map(cb => cb.value);
+
+    if (subjects.length === 0) {
+        alert('Please select at least one subject to study.');
+        return;
+    }
+
+    const studyPlan = createStudyPlan(goal, hours, duration, subjects);
+    displayStudyPlan(studyPlan);
+}
+
+function createStudyPlan(goal, hours, duration, subjects) {
+    const plan = {
+        goal: goal,
+        totalDays: duration,
+        dailyHours: hours,
+        subjects: subjects,
+        schedule: []
+    };
+
+    // Create daily schedule
+    for (let day = 1; day <= duration; day++) {
+        const daySchedule = {
+            day: day,
+            date: new Date(Date.now() + (day - 1) * 24 * 60 * 60 * 1000).toLocaleDateString(),
+            sessions: []
+        };
+
+        // Distribute subjects across the day
+        const subjectsForDay = subjects.slice(0, Math.min(subjects.length, hours));
+        const sessionDuration = Math.floor((hours * 60) / subjectsForDay.length);
+
+        subjectsForDay.forEach((subject, index) => {
+            const startHour = 9 + index * 2; // Start from 9 AM
+            daySchedule.sessions.push({
+                subject: subject,
+                startTime: `${startHour}:00`,
+                endTime: `${startHour + 2}:00`,
+                duration: sessionDuration,
+                topic: getRandomTopic(subject, goal),
+                activities: getActivitiesForSubject(subject, goal)
+            });
+        });
+
+        plan.schedule.push(daySchedule);
+    }
+
+    return plan;
+}
+
+function getRandomTopic(subject, goal) {
+    const topics = {
+        mathematics: {
+            'exam-prep': ['Quadratic Equations', 'Trigonometry', 'Calculus Basics', 'Geometry Theorems'],
+            'concept-mastery': ['Number Systems', 'Algebra Fundamentals', 'Statistics', 'Probability'],
+            'homework': ['Current Assignment Topics', 'Practice Problems', 'Formula Review'],
+            'skill-building': ['Mental Math', 'Problem Solving', 'Logical Reasoning']
+        },
+        science: {
+            'exam-prep': ['Physics Laws', 'Chemical Reactions', 'Biology Systems', 'Environmental Science'],
+            'concept-mastery': ['Scientific Method', 'Cell Biology', 'Force & Motion', 'Ecosystems'],
+            'homework': ['Lab Reports', 'Research Topics', 'Current Experiments'],
+            'skill-building': ['Observation Skills', 'Data Analysis', 'Scientific Writing']
+        },
+        english: {
+            'exam-prep': ['Grammar Rules', 'Literature Analysis', 'Writing Skills', 'Vocabulary'],
+            'concept-mastery': ['Parts of Speech', 'Reading Comprehension', 'Essay Structure', 'Poetry Analysis'],
+            'homework': ['Essay Writing', 'Book Reports', 'Grammar Exercises'],
+            'skill-building': ['Creative Writing', 'Public Speaking', 'Critical Thinking']
+        },
+        hindi: {
+            'exam-prep': ['व्याकरण', 'साहित्य', 'लेखन कौशल', 'शब्दावली'],
+            'concept-mastery': ['वाक्य रचना', 'पठन कौशल', 'कविता विश्लेषण', 'निबंध लेखन'],
+            'homework': ['निबंध लेखन', 'किताब रिपोर्ट', 'व्याकरण अभ्यास'],
+            'skill-building': ['रचनात्मक लेखन', 'वक्तृत्व', 'समीक्षात्मक सोच']
+        }
+    };
+
+    return topics[subject]?.[goal]?.[Math.floor(Math.random() * topics[subject][goal].length)] || 'General Review';
+}
+
+function getActivitiesForSubject(subject, goal) {
+    const activities = {
+        mathematics: ['Practice problems', 'Formula memorization', 'Concept application', 'Problem solving'],
+        science: ['Reading notes', 'Lab work', 'Diagram drawing', 'Concept mapping'],
+        english: ['Reading practice', 'Writing exercises', 'Vocabulary building', 'Grammar drills'],
+        hindi: ['पाठ पढ़ना', 'लेखन अभ्यास', 'शब्दावली निर्माण', 'व्याकरण ड्रिल']
+    };
+
+    return activities[subject] || ['Review material', 'Practice exercises'];
+}
+
+function displayStudyPlan(plan) {
+    const planContent = document.getElementById('studyPlanContent');
+    const planContainer = document.getElementById('generatedStudyPlan');
+
+    let html = `
+        <div class="study-plan-summary">
+            <h4>📊 Plan Summary</h4>
+            <p><strong>Goal:</strong> ${plan.goal.replace('-', ' ').toUpperCase()}</p>
+            <p><strong>Duration:</strong> ${plan.totalDays} days</p>
+            <p><strong>Daily Study Time:</strong> ${plan.dailyHours} hours</p>
+            <p><strong>Subjects:</strong> ${plan.subjects.join(', ')}</p>
+        </div>
+
+        <div class="study-schedule">
+            <h4>📅 Daily Schedule</h4>
+    `;
+
+    plan.schedule.forEach(day => {
+        html += `
+            <div class="study-day">
+                <h5>Day ${day.day} - ${day.date}</h5>
+                <div class="day-sessions">
+        `;
+
+        day.sessions.forEach(session => {
+            html += `
+                <div class="study-session">
+                    <div class="session-time">${session.startTime} - ${session.endTime}</div>
+                    <div class="session-details">
+                        <h6>${session.subject.charAt(0).toUpperCase() + session.subject.slice(1)}: ${session.topic}</h6>
+                        <p>Activities: ${session.activities.join(', ')}</p>
+                    </div>
+                </div>
+            `;
+        });
+
+        html += `
+                </div>
+            </div>
+        `;
+    });
+
+    html += `
+        </div>
+        <div class="study-plan-actions">
+            <button class="btn btn-primary" onclick="saveStudyPlan()">Save Study Plan</button>
+            <button class="btn btn-outline" onclick="exportStudyPlan()">Export Schedule</button>
+        </div>
+    `;
+
+    planContent.innerHTML = html;
+    planContainer.style.display = 'block';
+}
+
+function saveStudyPlan() {
+    alert('Study plan saved successfully! You can access it from your dashboard.');
+}
+
+function exportStudyPlan() {
+    alert('Study plan exported as PDF! Check your downloads folder.');
+}
+
+// Writing Assistant Functions
+function switchWritingTool(tool) {
+    // Update tab buttons
+    document.querySelectorAll('.tool-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    event.target.classList.add('active');
+
+    loadWritingTool(tool);
+}
+
+function loadWritingTool(tool) {
+    const content = document.getElementById('writingToolContent');
+
+    switch (tool) {
+        case 'essay':
+            content.innerHTML = `
+                <div class="writing-form">
+                    <div class="form-group">
+                        <label>Essay Topic:</label>
+                        <input type="text" id="essayTopic" placeholder="e.g., The Impact of Technology on Education">
+                    </div>
+                    <div class="form-group">
+                        <label>Essay Type:</label>
+                        <select id="essayType">
+                            <option value="persuasive">Persuasive Essay</option>
+                            <option value="narrative">Narrative Essay</option>
+                            <option value="expository">Expository Essay</option>
+                            <option value="argumentative">Argumentative Essay</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Word Count:</label>
+                        <select id="wordCount">
+                            <option value="500">500 words</option>
+                            <option value="800">800 words</option>
+                            <option value="1000">1000 words</option>
+                            <option value="1500">1500 words</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Key Points (optional):</label>
+                        <textarea id="keyPoints" placeholder="Enter main points you want to include..." rows="3"></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="generateEssay()">Generate Essay</button>
+                </div>
+                <div id="essayResult" style="display: none; margin-top: 2rem;"></div>
+            `;
+            break;
+
+        case 'grammar':
+            content.innerHTML = `
+                <div class="writing-form">
+                    <div class="form-group">
+                        <label>Paste your text here:</label>
+                        <textarea id="grammarText" placeholder="Enter the text you want to check for grammar..." rows="8"></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="checkGrammar()">Check Grammar</button>
+                </div>
+                <div id="grammarResult" style="display: none; margin-top: 2rem;"></div>
+            `;
+            break;
+
+        case 'improve':
+            content.innerHTML = `
+                <div class="writing-form">
+                    <div class="form-group">
+                        <label>Paste your writing here:</label>
+                        <textarea id="improveText" placeholder="Enter the text you want to improve..." rows="8"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Improvement Focus:</label>
+                        <select id="improveType">
+                            <option value="clarity">Clarity & Readability</option>
+                            <option value="style">Writing Style</option>
+                            <option value="vocabulary">Vocabulary Enhancement</option>
+                            <option value="structure">Structure & Flow</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="improveWriting()">Improve Writing</button>
+                </div>
+                <div id="improveResult" style="display: none; margin-top: 2rem;"></div>
+            `;
+            break;
+
+        case 'outline':
+            content.innerHTML = `
+                <div class="writing-form">
+                    <div class="form-group">
+                        <label>Topic:</label>
+                        <input type="text" id="outlineTopic" placeholder="e.g., Climate Change">
+                    </div>
+                    <div class="form-group">
+                        <label>Document Type:</label>
+                        <select id="outlineType">
+                            <option value="essay">Essay</option>
+                            <option value="research">Research Paper</option>
+                            <option value="presentation">Presentation</option>
+                            <option value="report">Report</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Key Sections:</label>
+                        <input type="text" id="keySections" placeholder="e.g., Introduction, Body, Conclusion (optional)">
+                    </div>
+                    <button class="btn btn-primary" onclick="generateOutline()">Generate Outline</button>
+                </div>
+                <div id="outlineResult" style="display: none; margin-top: 2rem;"></div>
+            `;
+            break;
+    }
+}
+
+function generateEssay() {
+    const topic = document.getElementById('essayTopic').value;
+    const type = document.getElementById('essayType').value;
+    const wordCount = document.getElementById('wordCount').value;
+    const keyPoints = document.getElementById('keyPoints').value;
+
+    if (!topic) {
+        alert('Please enter an essay topic.');
+        return;
+    }
+
+    const essay = createMockEssay(topic, type, wordCount, keyPoints);
+    displayEssayResult(essay);
+}
+
+function createMockEssay(topic, type, wordCount, keyPoints) {
+    const essayTemplates = {
+        persuasive: {
+            intro: `The topic of ${topic} has become increasingly important in our modern world. As technology continues to evolve, its impact on various aspects of our lives becomes more profound. This essay will argue that ${topic} brings both opportunities and challenges that must be carefully navigated.`,
+            body: `Firstly, ${topic} offers numerous benefits that enhance our daily lives. For instance, improved access to information and communication tools has revolutionized education and business practices. Students can now access vast libraries of knowledge instantly, while professionals can collaborate across geographical boundaries.
+
+Secondly, the challenges presented by ${topic} cannot be ignored. Issues such as privacy concerns, digital divide, and over-reliance on technology require careful consideration. Society must find ways to maximize benefits while minimizing potential drawbacks.
+
+Finally, the future of ${topic} depends on responsible implementation and regulation. By embracing innovation while maintaining ethical standards, we can ensure that technological advancement serves the greater good.`,
+            conclusion: `In conclusion, ${topic} represents a double-edged sword with tremendous potential for positive change alongside significant challenges. The key lies in finding the right balance between innovation and responsibility. As we move forward, it is crucial that we approach ${topic} with both enthusiasm and caution, ensuring that technological progress benefits all members of society.`
+        },
+        argumentative: {
+            intro: `The debate surrounding ${topic} continues to generate significant discussion among scholars, policymakers, and the general public. While some argue that ${topic} represents progress, others contend that it poses serious risks to established norms and values. This essay will examine both sides of the argument and present evidence supporting the position that ${topic} requires careful regulation and oversight.`,
+            body: `On one hand, proponents of ${topic} highlight its potential benefits. They argue that innovation drives economic growth and improves quality of life. For example, technological advancements have led to medical breakthroughs and improved communication systems that connect people worldwide.
+
+On the other hand, critics raise valid concerns about the unintended consequences of ${topic}. Issues such as job displacement, privacy erosion, and social inequality must be addressed. The rapid pace of change often outstrips society's ability to adapt, leading to various social and economic challenges.
+
+However, the solution is not to reject ${topic} entirely, but to implement appropriate safeguards and regulations. By establishing clear guidelines and ethical frameworks, society can harness the benefits of ${topic} while mitigating its risks.`,
+            conclusion: `Ultimately, ${topic} is neither entirely good nor entirely bad, but a complex phenomenon that requires nuanced understanding and careful management. The challenge for society is to create frameworks that maximize benefits while minimizing harm. Through thoughtful regulation and ongoing dialogue, we can ensure that ${topic} contributes positively to human development and well-being.`
+        }
+    };
+
+    const template = essayTemplates[type] || essayTemplates.persuasive;
+
+    return {
+        title: topic.charAt(0).toUpperCase() + topic.slice(1),
+        introduction: template.intro,
+        body: template.body,
+        conclusion: template.conclusion,
+        wordCount: wordCount,
+        type: type
+    };
+}
+
+function displayEssayResult(essay) {
+    const resultDiv = document.getElementById('essayResult');
+    resultDiv.innerHTML = `
+        <div class="essay-result">
+            <h4>${essay.title}</h4>
+            <div class="essay-meta">
+                <span>Type: ${essay.type.charAt(0).toUpperCase() + essay.type.slice(1)} Essay</span>
+                <span>Word Count: ~${essay.wordCount} words</span>
+            </div>
+
+            <div class="essay-content">
+                <h5>Introduction</h5>
+                <p>${essay.introduction}</p>
+
+                <h5>Body</h5>
+                <p>${essay.body}</p>
+
+                <h5>Conclusion</h5>
+                <p>${essay.conclusion}</p>
+            </div>
+
+            <div class="essay-actions">
+                <button class="btn btn-outline" onclick="copyEssay()">Copy to Clipboard</button>
+                <button class="btn btn-outline" onclick="downloadEssay()">Download as Word</button>
+                <button class="btn btn-outline" onclick="editEssay()">Edit Essay</button>
+            </div>
+        </div>
+    `;
+    resultDiv.style.display = 'block';
+}
+
+function checkGrammar() {
+    const text = document.getElementById('grammarText').value;
+    if (!text) {
+        alert('Please enter some text to check.');
+        return;
+    }
+
+    const corrections = mockGrammarCheck(text);
+    displayGrammarResult(corrections);
+}
+
+function mockGrammarCheck(text) {
+    // Mock grammar corrections
+    return [
+        {
+            original: "This are a example",
+            corrected: "This is an example",
+            explanation: "Subject-verb agreement error and missing article"
+        },
+        {
+            original: "He go to school everyday",
+            corrected: "He goes to school every day",
+            explanation: "Verb tense error and incorrect word form"
+        }
+    ];
+}
+
+function displayGrammarResult(corrections) {
+    const resultDiv = document.getElementById('grammarResult');
+    let html = '<h4>Grammar Check Results</h4>';
+
+    if (corrections.length === 0) {
+        html += '<p>✅ No grammar issues found! Your text looks good.</p>';
+    } else {
+        html += '<div class="corrections-list">';
+        corrections.forEach((correction, index) => {
+            html += `
+                <div class="correction-item">
+                    <h5>Correction ${index + 1}:</h5>
+                    <p><strong>Original:</strong> <span class="incorrect">${correction.original}</span></p>
+                    <p><strong>Corrected:</strong> <span class="correct">${correction.corrected}</span></p>
+                    <p><strong>Explanation:</strong> ${correction.explanation}</p>
+                </div>
+            `;
+        });
+        html += '</div>';
+    }
+
+    resultDiv.innerHTML = html;
+    resultDiv.style.display = 'block';
+}
+
+function improveWriting() {
+    const text = document.getElementById('improveText').value;
+    const type = document.getElementById('improveType').value;
+
+    if (!text) {
+        alert('Please enter some text to improve.');
+        return;
+    }
+
+    const improved = mockImproveWriting(text, type);
+    displayImproveResult(improved);
+}
+
+function mockImproveWriting(text, type) {
+    const improvements = {
+        clarity: "Your writing has been improved for clarity and readability. Complex sentences have been simplified, and the overall structure has been enhanced to make your ideas more accessible to readers.",
+        style: "The writing style has been refined with more varied sentence structure, improved word choice, and better flow between ideas. The tone is now more engaging and professional.",
+        vocabulary: "Advanced vocabulary has been incorporated where appropriate, and more precise word choices have been made to better convey your intended meaning.",
+        structure: "The text structure has been reorganized for better logical flow. Paragraphs have been rearranged, and transitions have been added to improve coherence."
+    };
+
+    return {
+        original: text,
+        improved: text + " [Improved version with " + type + " enhancements]",
+        changes: improvements[type],
+        suggestions: [
+            "Consider varying your sentence length for better rhythm",
+            "Use more specific examples to support your points",
+            "Add transitional phrases between paragraphs"
+        ]
+    };
+}
+
+function displayImproveResult(result) {
+    const resultDiv = document.getElementById('improveResult');
+    resultDiv.innerHTML = `
+        <div class="improve-result">
+            <h4>Writing Improvement Results</h4>
+
+            <div class="improvement-comparison">
+                <div class="original-text">
+                    <h5>Original Text:</h5>
+                    <p>${result.original}</p>
+                </div>
+
+                <div class="improved-text">
+                    <h5>Improved Text:</h5>
+                    <p>${result.improved}</p>
+                </div>
+            </div>
+
+            <div class="improvement-summary">
+                <h5>Changes Made:</h5>
+                <p>${result.changes}</p>
+
+                <h5>Suggestions for Further Improvement:</h5>
+                <ul>
+                    ${result.suggestions.map(suggestion => `<li>${suggestion}</li>`).join('')}
+                </ul>
+            </div>
+
+            <div class="improve-actions">
+                <button class="btn btn-outline" onclick="copyImprovedText()">Copy Improved Text</button>
+                <button class="btn btn-outline" onclick="compareTexts()">Side-by-Side View</button>
+            </div>
+        </div>
+    `;
+    resultDiv.style.display = 'block';
+}
+
+function generateOutline() {
+    const topic = document.getElementById('outlineTopic').value;
+    const type = document.getElementById('outlineType').value;
+    const sections = document.getElementById('keySections').value;
+
+    if (!topic) {
+        alert('Please enter a topic.');
+        return;
+    }
+
+    const outline = createMockOutline(topic, type, sections);
+    displayOutlineResult(outline);
+}
+
+function createMockOutline(topic, type, sections) {
+    const outlines = {
+        essay: {
+            structure: [
+                { title: "I. Introduction", content: ["Hook/Attention Grabber", "Background Information", "Thesis Statement"] },
+                { title: "II. Body Paragraph 1", content: ["Topic Sentence", "Supporting Evidence", "Explanation/Analysis", "Transition"] },
+                { title: "III. Body Paragraph 2", content: ["Topic Sentence", "Supporting Evidence", "Explanation/Analysis", "Transition"] },
+                { title: "IV. Body Paragraph 3", content: ["Topic Sentence", "Supporting Evidence", "Explanation/Analysis", "Transition"] },
+                { title: "V. Conclusion", content: ["Restate Thesis", "Summarize Main Points", "Final Thoughts/Call to Action"] }
+            ]
+        },
+        research: {
+            structure: [
+                { title: "I. Title Page", content: ["Title", "Author", "Institution", "Date"] },
+                { title: "II. Abstract", content: ["Purpose", "Methods", "Results", "Conclusions"] },
+                { title: "III. Introduction", content: ["Background", "Research Question", "Significance", "Thesis"] },
+                { title: "IV. Literature Review", content: ["Previous Research", "Gaps in Literature", "Theoretical Framework"] },
+                { title: "V. Methodology", content: ["Research Design", "Participants", "Data Collection", "Analysis"] },
+                { title: "VI. Results", content: ["Data Presentation", "Statistical Analysis", "Key Findings"] },
+                { title: "VII. Discussion", content: ["Interpretation", "Implications", "Limitations", "Future Research"] },
+                { title: "VIII. Conclusion", content: ["Summary", "Contributions", "Final Remarks"] },
+                { title: "IX. References", content: ["Complete Citations", "Proper Formatting"] }
+            ]
+        }
+    };
+
+    return {
+        topic: topic,
+        type: type,
+        structure: outlines[type] || outlines.essay
+    };
+}
+
+function displayOutlineResult(outline) {
+    const resultDiv = document.getElementById('outlineResult');
+    resultDiv.innerHTML = `
+        <div class="outline-result">
+            <h4>Outline for: ${outline.topic}</h4>
+            <p><strong>Type:</strong> ${outline.type.charAt(0).toUpperCase() + outline.type.slice(1)}</p>
+
+            <div class="outline-structure">
+                ${outline.structure.map(section => `
+                    <div class="outline-section">
+                        <h5>${section.title}</h5>
+                        <ul>
+                            ${section.content.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                `).join('')}
+            </div>
+
+            <div class="outline-actions">
+                <button class="btn btn-outline" onclick="copyOutline()">Copy Outline</button>
+                <button class="btn btn-outline" onclick="downloadOutline()">Download as PDF</button>
+                <button class="btn btn-outline" onclick="expandOutline()">Expand to Full Document</button>
+            </div>
+        </div>
+    `;
+    resultDiv.style.display = 'block';
+}
+
+// Utility functions for writing assistant
+function copyEssay() { alert('Essay copied to clipboard!'); }
+function downloadEssay() { alert('Essay downloaded as Word document!'); }
+function editEssay() { alert('Essay editor opened!'); }
+function copyImprovedText() { alert('Improved text copied to clipboard!'); }
+function compareTexts() { alert('Side-by-side comparison view opened!'); }
+function copyOutline() { alert('Outline copied to clipboard!'); }
+function downloadOutline() { alert('Outline downloaded as PDF!'); }
+function expandOutline() { alert('Full document generator opened!'); }
 
 function shareContent() {
     alert('Content sharing options opened. Share with other teachers or students.');

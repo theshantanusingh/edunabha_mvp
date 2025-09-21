@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practice MCQs - Edunabha</title>
+    <title>Practice - Edunabha</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -15,21 +15,28 @@
                 <span class="brand-icon">🎓</span>
                 <span class="brand-text">Edunabha</span>
             </div>
-            
+
             <ul class="nav-menu" id="navMenu">
                 <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
                 <li><a href="courses.html" class="nav-link">📚 Courses</a></li>
                 <li><a href="practice.html" class="nav-link active">✍️ Practice</a></li>
                 <li><a href="continue-learning.html" class="nav-link">▶️ Continue</a></li>
+                <li><a href="games.html" class="nav-link">🎮 Games</a></li>
+                <li><a href="ai.html" class="nav-link">🤖 AI Assistant</a></li>
                 <li><a href="teacher.html" class="nav-link">👨‍🏫 Teacher Mode</a></li>
             </ul>
-            
+
             <div class="nav-actions">
                 <div class="user-menu">
                     <div class="user-avatar">R</div>
                     <span class="user-name">Rajesh</span>
+                    <div class="user-dropdown">
+                        <a href="#" onclick="showProfile()">Profile</a>
+                        <a href="#" onclick="showSettings()">Settings</a>
+                        <a href="login.html">Sign Out</a>
+                    </div>
                 </div>
-                
+
                 <div class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
@@ -39,91 +46,162 @@
         </div>
     </nav>
 
-    <!-- Quiz Selection -->
+    <!-- Main Content -->
     <main class="main-content">
         <div class="container">
-            <div id="quizSelection" class="quiz-selection">
-                <section class="page-header">
-                    <h1>Practice MCQs</h1>
-                    <p>Test your knowledge with multiple choice questions</p>
-                </section>
-
-                <div class="quiz-categories" id="quizCategories">
-                    <!-- Quiz categories will be loaded dynamically -->
+            <!-- Practice Header -->
+            <section class="practice-header-section">
+                <div class="practice-header">
+                    <h1>✍️ Practice Zone</h1>
+                    <p>Sharpen your skills with interactive exercises, quizzes, and practice tests across all subjects</p>
                 </div>
-            </div>
+            </section>
 
-            <!-- Quiz Interface -->
-            <div id="quizInterface" class="quiz-interface" style="display: none;">
-                <div class="quiz-header">
-                    <div class="quiz-info">
-                        <h2 id="quizTitle">Quiz Title</h2>
-                        <p id="quizDescription">Subject • Class</p>
+            <!-- Practice Categories -->
+            <section class="practice-categories">
+                <div class="section-header">
+                    <h2>Choose Your Practice Type</h2>
+                    <p>Select from various practice formats to improve your understanding</p>
+                </div>
+
+                <div class="practice-grid">
+                    <div class="practice-card">
+                        <div class="practice-icon">📝</div>
+                        <h3>Quick Quizzes</h3>
+                        <p>Short, focused quizzes on specific topics. Perfect for daily practice.</p>
+                        <div class="practice-stats">
+                            <span>⏱️ 5-15 min</span>
+                            <span>📊 10-50 questions</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="startPractice('quiz')">Start Quiz</button>
                     </div>
-                    
-                    <div class="quiz-progress">
-                        <span id="questionProgress">1/10</span>
+
+                    <div class="practice-card">
+                        <div class="practice-icon">🔢</div>
+                        <h3>Math Problems</h3>
+                        <p>Step-by-step math problem solving with detailed explanations.</p>
+                        <div class="practice-stats">
+                            <span>⏱️ 10-30 min</span>
+                            <span>🧮 Algebra & Geometry</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="startPractice('math')">Solve Problems</button>
+                    </div>
+
+                    <div class="practice-card">
+                        <div class="practice-icon">📖</div>
+                        <h3>Reading Comprehension</h3>
+                        <p>Improve reading skills with passages and comprehension questions.</p>
+                        <div class="practice-stats">
+                            <span>⏱️ 15-25 min</span>
+                            <span>📚 Various topics</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="startPractice('reading')">Start Reading</button>
+                    </div>
+
+                    <div class="practice-card">
+                        <div class="practice-icon">✍️</div>
+                        <h3>Writing Practice</h3>
+                        <p>Practice writing skills with prompts and guided exercises.</p>
+                        <div class="practice-stats">
+                            <span>⏱️ 20-45 min</span>
+                            <span>📝 Essays & Stories</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="startPractice('writing')">Start Writing</button>
+                    </div>
+
+                    <div class="practice-card">
+                        <div class="practice-icon">🧠</div>
+                        <h3>Science Labs</h3>
+                        <p>Virtual experiments and science problem-solving activities.</p>
+                        <div class="practice-stats">
+                            <span>⏱️ 20-40 min</span>
+                            <span>🔬 Physics & Chemistry</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="startPractice('science')">Run Experiments</button>
+                    </div>
+
+                    <div class="practice-card">
+                        <div class="practice-icon">🎯</div>
+                        <h3>Mixed Practice</h3>
+                        <p>Comprehensive practice combining multiple subjects and skills.</p>
+                        <div class="practice-stats">
+                            <span>⏱️ 30-60 min</span>
+                            <span>📊 All subjects</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="startPractice('mixed')">Mixed Practice</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Practice Sessions -->
+            <section class="recent-practice">
+                <div class="section-header">
+                    <h2>Recent Practice Sessions</h2>
+                    <a href="#" class="view-all-btn" onclick="viewAllSessions()">View All</a>
+                </div>
+
+                <div class="practice-sessions" id="recentSessions">
+                    <!-- Sessions will be loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Practice Progress -->
+            <section class="practice-progress">
+                <div class="section-header">
+                    <h2>Your Practice Progress</h2>
+                </div>
+
+                <div class="progress-grid">
+                    <div class="progress-card">
+                        <h4>Mathematics</h4>
                         <div class="progress-bar">
-                            <div class="progress-fill" id="progressBar"></div>
+                            <div class="progress-fill" style="width: 75%"></div>
                         </div>
-                        <div class="timer" id="timer">10:00</div>
+                        <p>75% Complete • 45 problems solved</p>
                     </div>
-                </div>
 
-                <div class="question-card">
-                    <div class="question-number">Question <span id="questionNumber">1</span></div>
-                    <h3 class="question-text" id="questionText">Question will appear here</h3>
-                    
-                    <div class="options" id="optionsContainer">
-                        <!-- Options will be loaded dynamically -->
+                    <div class="progress-card">
+                        <h4>Science</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                        <p>60% Complete • 32 experiments</p>
                     </div>
-                    
-                    <div class="question-actions">
-                        <button class="btn btn-outline" id="prevBtn" onclick="previousQuestion()">Previous</button>
-                        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next</button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Quiz Results -->
-            <div id="quizResults" class="quiz-results" style="display: none;">
-                <div class="results-card">
-                    <div class="results-header">
-                        <div class="score-circle">
-                            <div class="score-number" id="scorePercentage">80%</div>
-                            <div class="score-label">Score</div>
+                    <div class="progress-card">
+                        <h4>English</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
                         </div>
-                        <div class="results-info">
-                            <h2>Quiz Completed!</h2>
-                            <p id="resultsMessage">Great job! You scored well.</p>
-                        </div>
+                        <p>85% Complete • 67 exercises</p>
                     </div>
-                    
-                    <div class="results-stats">
-                        <div class="stat-item">
-                            <div class="stat-value" id="correctAnswers">8</div>
-                            <div class="stat-label">Correct</div>
+
+                    <div class="progress-card">
+                        <h4>Hindi</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 40%"></div>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="incorrectAnswers">2</div>
-                            <div class="stat-label">Incorrect</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="timeTaken">8:30</div>
-                            <div class="stat-label">Time</div>
-                        </div>
-                    </div>
-                    
-                    <div class="results-actions">
-                        <button class="btn btn-outline" onclick="retakeQuiz()">Retake Quiz</button>
-                        <button class="btn btn-primary" onclick="backToSelection()">Try Another</button>
+                        <p>40% Complete • 18 exercises</p>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </main>
-    
+
+    <!-- Practice Modal -->
+    <div id="practiceModal" class="practice-modal">
+        <div class="practice-modal-content">
+            <div class="practice-modal-header">
+                <h2 id="practiceTitle">Practice Session</h2>
+                <button class="practice-close-btn" onclick="closePracticeModal()">&times;</button>
+            </div>
+            <div class="practice-modal-body" id="practiceContent">
+                <!-- Practice content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
     <script src="/assets/js/main.js"></script>
-    <script src="/assets/js/quiz.js"></script>
+    <script src="/assets/js/practice.js"></script>
 </body>
 </html>
