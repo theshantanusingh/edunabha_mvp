@@ -2178,14 +2178,29 @@ body:not(.auth-page) {
 }
 
 .ai-brain-animation {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 120px;
+    height: 120px;
 }
 
 .ai-brain {
-    font-size: 5rem;
+    font-size: 4rem;
     color: var(--text-primary);
+    position: relative;
+    z-index: 2;
+    animation: brain-pulse 2s ease-in-out infinite;
+}
+
+@keyframes brain-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
 }
 
 .ai-tools-grid {
