@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - Edunabha</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar dashboard-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">🎓</span>
+                <span class="brand-text">Edunabha</span>
+            </div>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                <li><a href="courses.html" class="nav-link">📚 Courses</a></li>
+                <li><a href="practice.html" class="nav-link">✍️ Practice</a></li>
+                <li><a href="continue-learning.html" class="nav-link">▶️ Continue</a></li>
+                <li><a href="games.html" class="nav-link active">🎮 Games</a></li>
+                <li><a href="teacher.html" class="nav-link">👨‍🏫 Teacher Mode</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="user-menu">
+                    <div class="user-avatar">R</div>
+                    <span class="user-name">Rajesh</span>
+                    <div class="user-dropdown">
+                        <a href="#" onclick="showProfile()">Profile</a>
+                        <a href="#" onclick="showSettings()">Settings</a>
+                        <a href="login.html">Sign Out</a>
+                    </div>
+                </div>
+
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <section class="page-header">
+                <h1>🎮 Gamified Learning</h1>
+                <p>Learn through fun and interactive games! Earn points, unlock achievements, and compete with friends.</p>
+            </section>
+
+            <!-- Games Grid -->
+            <section class="section">
+                <div class="games-grid">
+                    <!-- Math Quiz Game -->
+                    <div class="game-card">
+                        <div class="game-icon math">🧮</div>
+                        <h3>Math Quiz Challenge</h3>
+                        <p>Test your mathematical skills with timed quizzes covering algebra, geometry, and more.</p>
+                        <div class="game-stats">
+                            <span>⏱️ 5-10 min</span>
+                            <span>🏆 Points: 100-500</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="startGame('math')">Start Game</button>
+                    </div>
+
+                    <!-- Word Puzzle Game -->
+                    <div class="game-card">
+                        <div class="game-icon english">📝</div>
+                        <h3>Word Puzzle Quest</h3>
+                        <p>Improve your English vocabulary and spelling with crossword-style puzzles.</p>
+                        <div class="game-stats">
+                            <span>⏱️ 8-15 min</span>
+                            <span>🏆 Points: 150-600</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="startGame('word')">Start Game</button>
+                    </div>
+
+                    <!-- Memory Match Game -->
+                    <div class="game-card">
+                        <div class="game-icon science">🧠</div>
+                        <h3>Science Memory Match</h3>
+                        <p>Match scientific concepts and terms to build your knowledge of Physics, Chemistry, and Biology.</p>
+                        <div class="game-stats">
+                            <span>⏱️ 3-7 min</span>
+                            <span>🏆 Points: 80-400</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="startGame('memory')">Start Game</button>
+                    </div>
+
+                    <!-- Trivia Game -->
+                    <div class="game-card">
+                        <div class="game-icon trivia">🎯</div>
+                        <h3>Knowledge Trivia</h3>
+                        <p>Challenge yourself with questions across all subjects. Perfect for comprehensive learning!</p>
+                        <div class="game-stats">
+                            <span>⏱️ 10-20 min</span>
+                            <span>🏆 Points: 200-800</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="startGame('trivia')">Start Game</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scoreboard Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2>🏆 Leaderboard</h2>
+                    <a href="#" class="view-all-btn" onclick="showFullLeaderboard()">View All</a>
+                </div>
+
+                <div class="leaderboard" id="leaderboard">
+                    <!-- Leaderboard will be populated by JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Game Modal Container -->
+    <div id="gameModal" class="game-modal">
+        <div class="game-modal-content">
+            <div class="game-modal-header">
+                <h2 id="gameTitle">Game Title</h2>
+                <button class="game-close-btn" onclick="closeGame()">&times;</button>
+            </div>
+            <div class="game-modal-body" id="gameContent">
+                <!-- Game content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/games.js"></script>
+</body>
+</html>
