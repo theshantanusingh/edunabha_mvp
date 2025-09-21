@@ -2310,6 +2310,8 @@ body:not(.auth-page) {
     max-width: 700px;
     max-height: 90vh;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .ai-modal-content.large-modal {
@@ -2349,6 +2351,10 @@ body:not(.auth-page) {
 /* Teacher Dashboard */
 .teacher-dashboard-content {
     padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 .dashboard-tabs {
@@ -2357,6 +2363,7 @@ body:not(.auth-page) {
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--border);
     overflow-x: auto;
+    flex-shrink: 0;
 }
 
 .tab-btn {
@@ -2382,7 +2389,10 @@ body:not(.auth-page) {
 }
 
 .tab-content {
+    flex: 1;
+    overflow-y: auto;
     min-height: 400px;
+    padding-right: 0.5rem;
 }
 
 /* Analytics Tab */
