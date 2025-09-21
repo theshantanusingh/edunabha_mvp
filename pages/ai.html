@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Learning Assistant - Edunabha</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar dashboard-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">🎓</span>
+                <span class="brand-text">Edunabha</span>
+            </div>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                <li><a href="courses.html" class="nav-link">📚 Courses</a></li>
+                <li><a href="practice.html" class="nav-link">✍️ Practice</a></li>
+                <li><a href="continue-learning.html" class="nav-link">▶️ Continue</a></li>
+                <li><a href="games.html" class="nav-link">🎮 Games</a></li>
+                <li><a href="ai.html" class="nav-link active">🤖 AI Assistant</a></li>
+                <li><a href="teacher.html" class="nav-link">👨‍🏫 Teacher Mode</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="user-menu">
+                    <div class="user-avatar">R</div>
+                    <span class="user-name">Rajesh</span>
+                    <div class="user-dropdown">
+                        <a href="#" onclick="showProfile()">Profile</a>
+                        <a href="#" onclick="showSettings()">Settings</a>
+                        <a href="login.html">Sign Out</a>
+                    </div>
+                </div>
+
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- AI Header -->
+            <section class="ai-header-section">
+                <div class="ai-header">
+                    <div class="ai-header-content">
+                        <h1>🤖 AI Learning Assistant</h1>
+                        <p>Your intelligent companion for personalized education. Get help with studies, create content, and manage your classroom with AI-powered tools.</p>
+                    </div>
+                    <div class="ai-header-visual">
+                        <div class="ai-brain-animation">
+                            <div class="brain-wave"></div>
+                            <div class="brain-wave delay-1"></div>
+                            <div class="brain-wave delay-2"></div>
+                            <div class="ai-brain">🧠</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Tools Grid -->
+            <section class="ai-tools-section">
+                <div class="section-header">
+                    <h2>AI Tools & Features</h2>
+                    <p>Choose from our comprehensive suite of AI-powered educational tools</p>
+                </div>
+
+                <div class="ai-tools-grid">
+                    <!-- Student AI Tools -->
+                    <div class="ai-tool-card student-tool">
+                        <div class="tool-header">
+                            <div class="tool-icon">🎓</div>
+                            <h3>Student AI Tutor</h3>
+                        </div>
+                        <p>Get personalized help with your studies, homework, and difficult concepts.</p>
+                        <div class="tool-features">
+                            <span>📚 Subject Help</span>
+                            <span>❓ Q&A</span>
+                            <span>📝 Essay Help</span>
+                            <span>🔢 Math Solver</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="openStudentTutor()">Start Learning</button>
+                    </div>
+
+                    <div class="ai-tool-card student-tool">
+                        <div class="tool-header">
+                            <div class="tool-icon">📝</div>
+                            <h3>AI Study Planner</h3>
+                        </div>
+                        <p>Create personalized study schedules and get learning recommendations.</p>
+                        <div class="tool-features">
+                            <span>📅 Schedule</span>
+                            <span>🎯 Goals</span>
+                            <span>📊 Progress</span>
+                            <span>📋 Tasks</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="openStudyPlanner()">Plan Studies</button>
+                    </div>
+
+                    <div class="ai-tool-card student-tool">
+                        <div class="tool-header">
+                            <div class="tool-icon">✍️</div>
+                            <h3>Writing Assistant</h3>
+                        </div>
+                        <p>Get help with essays, assignments, and improve your writing skills.</p>
+                        <div class="tool-features">
+                            <span>📖 Grammar</span>
+                            <span>✏️ Editing</span>
+                            <span>💡 Ideas</span>
+                            <span>📋 Structure</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="openWritingAssistant()">Start Writing</button>
+                    </div>
+
+                    <!-- Teacher AI Tools -->
+                    <div class="ai-tool-card teacher-tool">
+                        <div class="tool-header">
+                            <div class="tool-icon">👨‍🏫</div>
+                            <h3>Teacher Dashboard</h3>
+                        </div>
+                        <p>Access powerful AI tools designed specifically for educators.</p>
+                        <div class="tool-features">
+                            <span>📊 Analytics</span>
+                            <span>📝 Lesson Plans</span>
+                            <span>❓ Quiz Gen</span>
+                            <span>📈 Reports</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="openTeacherDashboard()">Teacher Tools</button>
+                    </div>
+
+                    <div class="ai-tool-card teacher-tool">
+                        <div class="tool-header">
+                            <div class="tool-icon">📚</div>
+                            <h3>Content Creator</h3>
+                        </div>
+                        <p>Generate educational content, worksheets, and teaching materials.</p>
+                        <div class="tool-features">
+                            <span>📄 Worksheets</span>
+                            <span>🎬 Presentations</span>
+                            <span>📊 Assessments</span>
+                            <span>🎯 Activities</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="openContentCreator()">Create Content</button>
+                    </div>
+
+                    <div class="ai-tool-card teacher-tool">
+                        <div class="tool-header">
+                            <div class="tool-icon">👥</div>
+                            <h3>Class Management</h3>
+                        </div>
+                        <p>Manage students, track progress, and communicate with parents.</p>
+                        <div class="tool-features">
+                            <span>📋 Student List</span>
+                            <span>📊 Progress</span>
+                            <span>💬 Communication</span>
+                            <span>📈 Reports</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="openClassManagement()">Manage Class</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions-section">
+                <div class="section-header">
+                    <h2>Quick Actions</h2>
+                    <p>Commonly used AI features for instant help</p>
+                </div>
+
+                <div class="quick-actions-grid">
+                    <div class="quick-action-card" onclick="quickAction('math')">
+                        <div class="action-icon">🔢</div>
+                        <h4>Math Problem Solver</h4>
+                        <p>Solve equations and explain steps</p>
+                    </div>
+
+                    <div class="quick-action-card" onclick="quickAction('quiz')">
+                        <div class="action-icon">❓</div>
+                        <h4>Generate Quiz</h4>
+                        <p>Create custom quizzes instantly</p>
+                    </div>
+
+                    <div class="quick-action-card" onclick="quickAction('explain')">
+                        <div class="action-icon">💡</div>
+                        <h4>Explain Concept</h4>
+                        <p>Get clear explanations for any topic</p>
+                    </div>
+
+                    <div class="quick-action-card" onclick="quickAction('grade')">
+                        <div class="action-icon">📊</div>
+                        <h4>Grade Assignment</h4>
+                        <p>AI-powered grading assistance</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- AI Tutor Modal -->
+    <div id="aiTutorModal" class="ai-modal">
+        <div class="ai-modal-content">
+            <div class="ai-modal-header">
+                <div class="ai-tutor-info">
+                    <div class="ai-avatar">🤖</div>
+                    <div class="ai-details">
+                        <h3>AI Study Assistant</h3>
+                        <p>Ask me anything about Mathematics, Science, or English!</p>
+                    </div>
+                </div>
+                <button class="ai-close-btn" onclick="closeAIModal()">&times;</button>
+            </div>
+
+            <div class="ai-chat-messages" id="aiTutorMessages">
+                <div class="ai-message">
+                    <div class="ai-avatar-small">🤖</div>
+                    <div class="ai-message-content">
+                        <p>Hello! I'm your AI Study Assistant. I can help you with homework, explain difficult concepts, solve math problems, and answer questions about any subject. What would you like to learn today?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ai-chat-input">
+                <div class="ai-input-container">
+                    <textarea id="aiTutorQuestion" placeholder="Ask me anything... e.g., 'Explain photosynthesis' or 'Solve 2x + 5 = 17'" rows="2"></textarea>
+                    <button class="ai-send-btn" onclick="sendTutorQuestion()">
+                        <span class="send-icon">📤</span>
+                    </button>
+                </div>
+
+                <div class="ai-quick-questions">
+                    <span class="quick-label">Quick Questions:</span>
+                    <button class="quick-question" onclick="quickTutorQuestion('Explain the quadratic formula')">Quadratic Formula</button>
+                    <button class="quick-question" onclick="quickTutorQuestion('What is photosynthesis?')">Photosynthesis</button>
+                    <button class="quick-question" onclick="quickTutorQuestion('Difference between active and passive voice')">Active vs Passive</button>
+                    <button class="quick-question" onclick="quickTutorQuestion('Solve: 15x - 8 = 37')">Solve Equation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teacher Dashboard Modal -->
+    <div id="teacherDashboardModal" class="ai-modal">
+        <div class="ai-modal-content large-modal">
+            <div class="ai-modal-header">
+                <h3>👨‍🏫 Teacher AI Dashboard</h3>
+                <button class="ai-close-btn" onclick="closeAIModal()">&times;</button>
+            </div>
+
+            <div class="teacher-dashboard-content">
+                <div class="dashboard-tabs">
+                    <button class="tab-btn active" onclick="switchTeacherTab('analytics')">Analytics</button>
+                    <button class="tab-btn" onclick="switchTeacherTab('lesson-planner')">Lesson Planner</button>
+                    <button class="tab-btn" onclick="switchTeacherTab('quiz-generator')">Quiz Generator</button>
+                    <button class="tab-btn" onclick="switchTeacherTab('content-creator')">Content Creator</button>
+                    <button class="tab-btn" onclick="switchTeacherTab('class-management')">Class Management</button>
+                    <button class="tab-btn" onclick="switchTeacherTab('manage-students')">Manage Students</button>
+                    <button class="tab-btn" onclick="switchTeacherTab('manage-content')">Manage Content</button>
+                </div>
+
+                <div class="tab-content" id="teacherTabContent">
+                    <!-- Content will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/ai.js"></script>
+</body>
+</html>
